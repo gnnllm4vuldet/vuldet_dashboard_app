@@ -1,0 +1,13 @@
+<div class="cases-switcher">
+  <label class="switcher-label">
+    <input
+      type="checkbox"
+      [(ngModel)]="isManual"
+      (ngModelChange)="onChange()"
+      class="switcher-checkbox"/>
+    <span class="switcher-text">{{ 'CASES_SWITCHER.LABEL' | translate }}</span>
+  </label>
+  <div class="switcher-hint" [class.active]="isManual">
+    {{ isManual ? ('CASES_SWITCHER.MANUAL_HINT' | translate) : ('CASES_SWITCHER.NORMAL_HINT' | translate) }}
+  </div>
+</div>

@@ -1,0 +1,162 @@
+<div class="venn-layout">
+
+  <!-- LEFT SIDEBAR -->
+  <div class="venn-side">
+    <div
+      *ngFor="let item of leftSide"
+      class="vs-item"
+      [style.border-left-color]="item.color"
+      (click)="select(item.section)">
+      <div class="vs-left">
+        <div class="vs-dot" [style.background]="item.color"></div>
+        <span class="vs-name" [style.color]="item.color">{{ item.method }}</span>
+      </div>
+      <span class="vs-count" [style.color]="item.color">{{ item.count }}</span>
+    </div>
+
+    <div class="int-box">
+      <div class="int-ttl">{{ 'VENN.INTERSECTIONS' | translate }}</div>
+      <div
+        *ngFor="let item of leftIntersections"
+        class="int-row"
+        (click)="select(item.section)">
+        <span class="int-nm">
+          <ng-container *ngIf="item.labelKey">{{ item.labelKey | translate }}</ng-container>
+          <ng-container *ngIf="!item.labelKey">{{ item.label }}</ng-container>
+        </span>
+        <span class="int-ct" [style.color]="item.color || 'var(--text2)'">{{ item.count }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SVG VENN DIAGRAM -->
+  <svg class="venn-svg" width="540" height="480" viewBox="0 0 540 480">
+
+    <!-- Main circles -->
+    <g
+      *ngFor="let c of circles"
+      class="vsec"
+      [class.hovered]="isHovered(c.section)"
+      (mouseenter)="onHover(c.section)"
+      (mouseleave)="onLeave()"
+      (click)="select(c.section)">
+      <circle
+        [attr.cx]="c.cx"
+        [attr.cy]="c.cy"
+        [attr.r]="c.r"
+        [attr.fill]="c.color"
+        [attr.stroke]="c.color"
+        fill-opacity="0.13"
+        stroke-width="1.5"/>
+      <!-- Method name -->
+      <text
+        [attr.x]="c.labelX"
+        [attr.y]="c.labelY"
+        [attr.fill]="c.color"
+        class="lbl-method">
+        {{ c.method }}
+      </text>
+      <!-- Detected count -->
+      <text
+        [attr.x]="c.labelX"
+        [attr.y]="c.labelY + 22"
+        [attr.fill]="c.color"
+        class="lbl-detected"
+        opacity="0.7">
+        {{ c.detected }} detected
+      </text>
+      <!-- Exclusive count big -->
+      <text
+        [attr.x]="c.labelX + 4"
+        [attr.y]="c.labelY + 68"
+        [attr.fill]="c.color"
+        class="lbl-exclusive-big">
+        {{ c.exclusive }}
+      </text>
+      <!-- Exclusive label -->
+      <text
+        [attr.x]="c.labelX + 4"
+        [attr.y]="c.labelY + 88"
+        [attr.fill]="c.color"
+        class="lbl-exclusive-small"
+        opacity="0.6">
+        {{ 'VENN.EXCLUSIVE' | translate }}
+      </text>
+    </g>
+
+    <!-- Intersection ellipses -->
+    <g
+      *ngFor="let int of intersections"
+      class="vint"
+      [class.hovered]="isHovered(int.section)"
+      (mouseenter)="onHover(int.section)"
+      (mouseleave)="onLeave()"
+      (click)="select(int.section)">
+      <ellipse
+        [attr.cx]="int.cx"
+        [attr.cy]="int.cy"
+        [attr.rx]="int.rx"
+        [attr.ry]="int.ry"
+        [attr.fill]="int.color"
+        [attr.transform]="getTransform(int)"
+        fill-opacity="0.24"/>
+      <text [attr.x]="int.textX" [attr.y]="int.textY" [attr.fill]="int.color" class="lbl-int-count">
+        {{ int.count }}
+      </text>
+      <text [attr.x]="int.textX - 6" [attr.y]="int.textY + 14" [attr.fill]="int.color" class="lbl-int-name">
+        {{ int.label }}
+      </text>
+    </g>
+
+    <!-- ── Normal mode: all-three-correct center ── -->
+    <g
+      *ngIf="!isManualMode"
+      class="vint"
+      [class.hovered]="isHovered('all-three-correct')"
+      (mouseenter)="onHover('all-three-correct')"
+      (mouseleave)="onLeave()"
+      (click)="select('all-three-correct')">
+      <circle cx="282" cy="242" r="30"
+        fill="#1a1a1a" fill-opacity="0.06"
+        stroke="#1a1a1a" stroke-width="1.2"
+        stroke-dasharray="4,3"/>
+      <text x="282" y="236" text-anchor="middle" fill="#1a1a1a" class="lbl-all4-count">{{ allCorrectCount }}</text>
+      <text x="282" y="254" text-anchor="middle" fill="#888" class="lbl-all4-label">
+        {{ 'VENN.ALL_CORRECT' | translate }}
+      </text>
+    </g>
+
+    <!-- ── Normal mode: all-three-wrong text link ── -->
+    <text
+      *ngIf="!isManualMode"
+      x="10" y="474"
+      fill="#c0392b"
+      class="lbl-allwrong"
+      (mouseenter)="onHover('all-three-wrong')"
+      (mouseleave)="onLeave()"
+      (click)="select('all-three-wrong')"
+      [class.hovered-text]="isHovered('all-three-wrong')">
+      {{ 'VENN.ALL_WRONG' | translate }}
+    </text>
+
+    <!-- ── Manual mode: both-wrong text link ── -->
+    <text
+      *ngIf="isManualMode"
+      x="10" y="474"
+      fill="#c0392b"
+      class="lbl-allwrong"
+      (mouseenter)="onHover('both-wrong')"
+      (mouseleave)="onLeave()"
+      (click)="select('both-wrong')"
+      [class.hovered-text]="isHovered('both-wrong')">
+      {{ 'VENN.BOTH_WRONG' | translate }} ({{ bothWrongCount }})
+    </text>
+
+  </svg>
+
+  <!-- CASES SWITCHER (right side) -->
+  <div class="venn-switcher-col">
+    <app-cases-switcher></app-cases-switcher>
+  </div>
+
+</div>

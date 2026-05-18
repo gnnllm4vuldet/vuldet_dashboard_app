@@ -1,0 +1,19 @@
+<!-- VERDICT CARD -->
+<div class="verdict-card">
+  <div class="vd-head">{{ 'CODE_DETAIL.VERDICTS' | translate }}</div>
+
+  <div *ngFor="let v of verdicts" class="vd-row">
+    <span class="vd-model">
+      <span class="vdot" [style.background]="v.color"></span>
+      {{ v.name }}
+    </span>
+    <span class="vd-right">
+      <span class="vlbl" [class.lv]="v.prediction === 'vulnerable'" [class.lb]="v.prediction === 'secure'">
+        {{ v.prediction === 'vulnerable' ? ('CODE_DETAIL.VULNERABLE' | translate) : ('CODE_DETAIL.SECURE' | translate) }}
+      </span>
+      <span class="atag" [class.aok]="v.isCorrect" [class.abad]="!v.isCorrect">
+        {{ v.isCorrect ? '✓ ' + ('CODE_DETAIL.CORRECT' | translate) : '✗ ' + ('CODE_DETAIL.WRONG' | translate) }}
+      </span>
+    </span>
+  </div>
+</div>

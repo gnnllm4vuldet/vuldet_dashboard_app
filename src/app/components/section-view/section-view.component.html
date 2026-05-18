@@ -1,0 +1,82 @@
+<div class="section-view fade-up">
+
+  <!-- Top bar: back + badge + description -->
+  <div class="sec-topbar">
+    <button class="btn-back" (click)="onBack()">
+      <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+        <path d="M9 2L4 7L9 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      {{ 'SECTION.BACK' | translate }}
+    </button>
+
+    <div
+      class="sec-badge"
+      [style.background]="badgeBg"
+      [style.color]="badgeColor"
+      [style.border]="badgeBorder">
+      {{ 'SECTION.LABELS.' + activeSection | translate }}
+    </div>
+
+    <span class="sec-desc">
+      {{ 'SECTION.DESCRIPTIONS.' + activeSection | translate }}
+    </span>
+  </div>
+
+  <!-- Loading -->
+  <div *ngIf="loading" class="loading">Loading…</div>
+
+  <!-- Main: LIST LEFT · CODE RIGHT -->
+  <div *ngIf="!loading" class="sec-layout">
+
+    <!-- LEFT: intersection switcher + case list -->
+    <div class="list-col">
+
+      <app-intersection-switcher
+        [activeSection]="activeSection"
+        (sectionChange)="onSectionChange($event)">
+      </app-intersection-switcher>
+
+      <app-ground-truth-filter
+        [value]="groundTruthFilter"
+        (filterChange)="onGroundTruthFilterChange($event)">
+      </app-ground-truth-filter>
+
+      <div class="case-list-scroll">
+        <app-case-list
+          [cases]="filteredCases"
+          [selectedCaseId]="selectedCase?.id ?? null"
+          (caseSelected)="onCaseSelected($event)">
+        </app-case-list>
+      </div>
+    </div>
+
+    <!-- MIDDLE: code + verdict panel -->
+    <div class="code-col">
+      <app-code-detail
+        *ngIf="selectedCase; else noCase"
+        [vulnCase]="selectedCase!">
+      </app-code-detail>
+
+      <ng-template #noCase>
+        <div class="ph-code">
+          <div class="ph-arrow">←</div>
+          <div class="ph-text">{{ 'CASE_LIST.SELECT_HINT' | translate }}</div>
+        </div>
+      </ng-template>
+    </div>
+
+    <!-- RIGHT: code properties + model verdicts -->
+    <div class="props-col">
+      <app-code-properties
+        *ngIf="selectedCase"
+        [vulnCase]="selectedCase!">
+      </app-code-properties>
+
+      <app-model-verdicts
+        *ngIf="selectedCase"
+        [vulnCase]="selectedCase!">
+      </app-model-verdicts>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<div class="gt-filter">
+  <label class="filter-label">{{ 'FILTER.GROUND_TRUTH_LABEL' | translate }}</label>
+  <select class="filter-select" [value]="value" (change)="onSelect($event)">
+    <option *ngFor="let o of options" [value]="o" [selected]="value === o">
+      {{ 'FILTER.' + o.toUpperCase() | translate }}
+    </option>
+  </select>
+</div>

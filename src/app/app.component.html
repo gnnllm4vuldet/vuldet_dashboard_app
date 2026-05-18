@@ -1,0 +1,24 @@
+<app-topbar></app-topbar>
+
+<div class="page">
+  <!-- HEADER: title -->
+  <div class="hdr">
+    <div class="title-c">
+      <div class="title-main">{{ 'HEADER.TITLE' | translate }}</div>
+      <div class="title-sub">{{ 'HEADER.SUBTITLE' | translate }}</div>
+    </div>
+  </div>
+
+  <!-- VENN VIEW -->
+  <app-venn-diagram
+    *ngIf="!activeSection"
+    (sectionSelected)="onSectionSelected($event)">
+  </app-venn-diagram>
+
+  <!-- SECTION VIEW (replaces venn) -->
+  <app-section-view
+    *ngIf="activeSection"
+    [section]="activeSection"
+    (back)="onBack()">
+  </app-section-view>
+</div>

@@ -1,0 +1,8 @@
+<div class="section-switcher">
+  <label class="switcher-label">{{ 'SECTION.SWITCH_LABEL' | translate }}</label>
+  <select class="switcher-select" [value]="activeSection" (change)="onSelect($event)">
+    <option *ngFor="let s of sections" [value]="s" [selected]="activeSection === s">
+      {{ 'SECTION.LABELS.' + s | translate }}
+    </option>
+  </select>
+</div>

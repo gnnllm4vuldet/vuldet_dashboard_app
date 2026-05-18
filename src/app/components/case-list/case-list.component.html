@@ -1,0 +1,25 @@
+<div class="case-table">
+  <div class="ct-header">
+    <div class="ct-hr">
+      <div class="col-id">{{ 'CASE_LIST.ID' | translate }}</div>
+      <div class="col-gt">{{ 'CASE_LIST.GROUND_TRUTH' | translate }}</div>
+    </div>
+  </div>
+
+  <div
+    *ngFor="let c of cases"
+    class="ct-row"
+    [class.active]="isSelected(c)"
+    (click)="select(c)">
+    <div class="col-id ct-id">{{ c.id }}</div>
+    <div class="col-gt">
+      <span class="pill" [class.pill-gt1]="c.groundTruth === 'vulnerable'" [class.pill-gt0]="c.groundTruth === 'secure'">
+        {{ c.groundTruth }}
+      </span>
+    </div>
+  </div>
+
+  <div *ngIf="cases.length === 0" class="no-cases">
+    No cases in this section.
+  </div>
+</div>

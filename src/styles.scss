@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --gnn: #1e3db8;
+  --gnn-l: #eef0ff;
+  --gnn-m: #b8c4f8;
+  --claude: #7c22b0;
+  --claude-l: #f5eeff;
+  --claude-m: #d0a0f0;
+  --gpt: #0a6e42;
+  --gpt-l: #e8faf2;
+  --gpt-m: #80d8b0;
+  --llama: #b84a0a;
+  --llama-l: #fff2e8;
+  --llama-m: #f0b080;
+  --danger: #c0392b;
+  --safe: #1a7a40;
+  --bg: #f4f2ee;
+  --card: #ffffff;
+  --border: #e4e0d8;
+  --border2: #ccc8be;
+  --text1: #1a1a1a;
+  --text2: #666660;
+  --text3: #aaa8a0;
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text1);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* Shared pill styles */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 7px;
+  border-radius: 5px;
+  font-size: 9px;
+  font-weight: 600;
+  font-family: 'IBM Plex Mono', monospace;
+}
+.pill-1   { background: #fff0ee; color: #b83020; border: 1px solid #f0c0b0; }
+.pill-0   { background: #edf9f2; color: #127840; border: 1px solid #98d8b0; }
+.pill-gt1 { background: #fdeef5; color: #9a1050; border: 1px solid #f0a0c0; }
+.pill-gt0 { background: #eef2ff; color: #1a3ab0; border: 1px solid #a8b8f4; }
+
+/* Shared button */
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: var(--text1);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.12s;
+}
+.btn-back:hover { background: #333; }
+
+/* Section badge */
+.sec-badge {
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.2s ease both; }

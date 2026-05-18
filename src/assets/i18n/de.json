@@ -1,0 +1,86 @@
+{
+  "TOPBAR": {
+    "TITLE": "Schwachstellenerkennung · Modellvergleich"
+  },
+  "HEADER": {
+    "TITLE": "Schwachstellenerkennung",
+    "SUBTITLE": "600 Proben · GNN + 2 LLMs · 2026",
+    "GRANT_LABEL": "gefördert von",
+    "COLLABORATION": "Eine Zusammenarbeit von"
+  },
+  "VENN": {
+    "TITLE": "Erkannte Schwachstellen — Venn-Diagramm",
+    "HINT": "Hover · Klick für Details",
+    "INTERSECTIONS": "Schnittmengen",
+    "EXCLUSIVE": "exklusiv",
+    "ALL_CORRECT": "alle 3 korrekt",
+    "ALL_WRONG": "alle 3 falsch",
+    "ALL_CORRECT_LABEL": "Alle drei korrekt",
+    "ALL_WRONG_LABEL": "Alle falsch",
+    "BOTH_CORRECT_LABEL": "Beide korrekt",
+    "BOTH_WRONG_LABEL": "Beide falsch",
+    "BOTH_WRONG": "beide falsch"
+  },
+  "CASES_SWITCHER": {
+    "LABEL": "Manuelle Fälle anzeigen",
+    "NORMAL_HINT": "600 Testfälle · GNN + Claude + GPT-4o",
+    "MANUAL_HINT": "129 Testfälle · GNN + Claude"
+  },
+  "SECTION": {
+    "BACK": "Zurück",
+    "SWITCH_LABEL": "Schnittmenge wechseln",
+    "LABELS": {
+      "gnn-only":    "Nur GNN — 44 Fälle",
+      "claude-only": "Nur Claude — 19 Fälle",
+      "gpt-only":    "Nur GPT-4o — 18 Fälle",
+      "gnn-claude":  "GNN ∩ Claude — 40 Fälle",
+      "claude-gpt":  "Claude ∩ GPT-4o — 118 Fälle",
+      "gnn-gpt":     "GNN ∩ GPT-4o — 36 Fälle",
+      "all-three-correct": "Alle drei korrekt — 308",
+      "all-three-wrong":   "Alle drei falsch — 17",
+      "both-correct":      "Beide korrekt (manuell)",
+      "both-wrong":        "Beide falsch (manuell)"
+    },
+    "DESCRIPTIONS": {
+      "gnn-only":    "Nur GNN erkannte diese Schwachstellen",
+      "claude-only": "Nur Claude erkannte diese Schwachstellen",
+      "gpt-only":    "Nur GPT-4o erkannte diese Schwachstellen",
+      "gnn-claude":  "GNN und Claude einig, GPT-4o nicht",
+      "claude-gpt":  "Claude und GPT-4o einig, GNN nicht",
+      "gnn-gpt":     "GNN und GPT-4o einig, Claude nicht",
+      "all-three-correct": "Alle drei Modelle korrekt — perfekter Konsens",
+      "all-three-wrong":   "Alle drei Modelle lagen falsch",
+      "both-correct":      "GNN und Claude beide korrekt",
+      "both-wrong":        "GNN und Claude beide falsch"
+    }
+  },
+  "FILTER": {
+    "GROUND_TRUTH_LABEL": "Nach Ground truth filtern",
+    "BOTH": "Beide",
+    "VULNERABLE": "Anfällig",
+    "SECURE": "Sicher"
+  },
+  "CASE_LIST": {
+    "ID": "Bezeichner",
+    "GROUND_TRUTH": "Ground truth",
+    "SELECT_HINT": "Fall aus der Liste auswählen"
+  },
+  "CODE_PROPS": {
+    "TITLE": "Eigenschaften",
+    "LANGUAGE": "Sprache",
+    "CWE_ID": "CWE-ID",
+    "OWASP": "OWASP Top 10",
+    "MVC": "MVC-Kategorie",
+    "FIX_SIZE": "Fix-Größe",
+    "FIX_TYPE": "Fix-Typ"
+  },
+  "CODE_DETAIL": {
+    "SOURCE": "Quellcode",
+    "VERDICTS": "Modell-Urteile",
+    "GROUND_TRUTH": "Ground truth",
+    "CORRECT": "korrekt",
+    "WRONG": "falsch",
+    "VULNERABLE": "ANFÄLLIG",
+    "SECURE": "SICHER"
+  }
+}

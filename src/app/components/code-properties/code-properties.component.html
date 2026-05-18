@@ -1,0 +1,37 @@
+<div class="props-card">
+  <div class="props-title">{{ 'CODE_PROPS.TITLE' | translate }}</div>
+
+  <div class="props-list">
+
+    <div class="prop-row">
+      <span class="prop-label">{{ 'CODE_PROPS.LANGUAGE' | translate }}</span>
+      <span class="prop-value">{{ vulnCase.language || '—' }}</span>
+    </div>
+
+    <div class="prop-row">
+      <span class="prop-label">{{ 'CODE_PROPS.CWE_ID' | translate }}</span>
+      <span class="prop-value prop-mono">{{ vulnCase.cweId || '—' }}</span>
+    </div>
+
+    <div class="prop-row">
+      <span class="prop-label">{{ 'CODE_PROPS.OWASP' | translate }}</span>
+      <span class="prop-value">{{ vulnCase.owaspTop10 || '—' }}</span>
+    </div>
+
+    <div class="prop-row">
+      <span class="prop-label">{{ 'CODE_PROPS.MVC' | translate }}</span>
+      <span class="prop-value">{{ vulnCase.mvcCategory || '—' }}</span>
+    </div>
+
+    <div class="prop-row">
+      <span class="prop-label">{{ 'CODE_PROPS.FIX_SIZE' | translate }}</span>
+      <span class="prop-value">{{ vulnCase.fixSize || '—' }}</span>
+    </div>
+
+    <div class="prop-row">
+      <span class="prop-label">{{ 'CODE_PROPS.FIX_TYPE' | translate }}</span>
+      <span class="prop-value">{{ vulnCase.fixType || '—' }}</span>
+    </div>
+
+  </div>
+</div>

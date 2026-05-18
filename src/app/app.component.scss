@@ -1,0 +1,12 @@
+.page {
+  padding: 24px 32px 40px;
+
+  .hdr {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .title-c { text-align: center; }
+  .title-main { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; }
+  .title-sub  { font-size: 11px; color: var(--text3); margin-top: 3px; }
+}

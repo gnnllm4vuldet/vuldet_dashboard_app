@@ -1,0 +1,132 @@
+.code-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  min-width: 0; /* stay within the flex/grid cell */
+}
+
+.code-head {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  background: #faf9f6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.code-id {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--gnn);
+  font-weight: 500;
+}
+
+.code-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lang-badge, .cwe-badge {
+  font-size: 9px;
+  font-weight: 500;
+  font-family: 'IBM Plex Mono', monospace;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text3);
+}
+
+.cwe-badge {
+  color: #b84a0a;
+  background: #fff2e8;
+  border-color: #f0b080;
+}
+
+.source-label {
+  font-size: 9px;
+  color: var(--text3);
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.code-desc {
+  padding: 8px 16px;
+  font-size: 11px;
+  color: var(--text2);
+  background: #faf9f6;
+  border-bottom: 1px solid var(--border);
+  font-style: italic;
+}
+
+.code-body {
+  /*background: #f7f6f3;*/  /*for light theme*/
+  background: #1c1e2a;  /*for dark theme*/
+  padding: 16px 16px 16px 0;
+  overflow-x: auto;
+  display: flex;
+  gap: 0;
+}
+
+.line-numbers {
+  display: flex;
+  flex-direction: column;
+  padding: 0 12px 0 12px;
+  user-select: none;
+  flex-shrink: 0;
+
+  .line-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    /*color: #b0a898;*/ /*for light theme*/
+    color: #3a4060; /*for dark theme*/
+    line-height: 1.7;
+    text-align: right;
+    min-width: 20px;
+  }
+}
+
+.code-pre {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  line-height: 1.7;
+  white-space: pre;
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+
+  code {
+    display: block;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    white-space: inherit;
+    background: transparent;
+    padding: 0;
+  }
+}
+
+/* Per-line spans injected by postProcessHighlight() */
+/* ::ng-deep is required because these spans are injected via innerHTML
+   and therefore do not receive Angular's emulated-encapsulation attribute */
+:host ::ng-deep .code-line {
+  display: block;
+  padding-left: 4px;
+  border-left: 2px solid transparent;
+}
+
+:host ::ng-deep .vuln-line {
+  background: rgba(220, 55, 40, 0.18);
+  border-left: 2px solid rgba(220, 80, 50, 0.55);
+}
+
+/* Vulnerable line number in the gutter.
+   Must be nested inside .line-numbers to beat the parent selector's specificity
+   added by Angular's emulated encapsulation. */
+.line-numbers .line-num.vuln-line-num {
+  color: #e84040;
+  font-weight: 700;
+}
+

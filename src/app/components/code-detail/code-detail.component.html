@@ -1,0 +1,28 @@
+<!-- SOURCE CODE CARD -->
+<div class="code-card">
+  <div class="code-head">
+    <span class="code-id">{{ vulnCase.id }}</span>
+    <div class="code-meta">
+      <span class="lang-badge">{{ vulnCase.language }}</span>
+      <span *ngIf="vulnCase.cweId" class="cwe-badge">{{ vulnCase.cweId }}</span>
+      <span class="source-label">{{ 'CODE_DETAIL.SOURCE' | translate }}</span>
+    </div>
+  </div>
+
+  <div *ngIf="vulnCase.description" class="code-desc">
+    {{ vulnCase.description }}
+  </div>
+
+  <div class="code-body">
+    <div class="line-numbers">
+      <span
+        *ngFor="let line of codeLines; let i = index"
+        class="line-num"
+        [class.vuln-line-num]="isVulnLine(i + 1)">{{ i + 1 }}</span>
+    </div>
+    <pre class="code-pre"><code
+      [highlight]="vulnCase.sourceCode"
+      [language]="highlightLang"
+      #codeEl></code></pre>
+  </div>
+</div>

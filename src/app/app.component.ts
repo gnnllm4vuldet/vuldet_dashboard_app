@@ -1,0 +1,26 @@
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
+import { TopbarComponent } from './components/topbar/topbar.component';
+import { VennDiagramComponent } from './components/venn-diagram/venn-diagram.component';
+import { SectionViewComponent } from './components/section-view/section-view.component';
+import { AnyVennSection } from './models/vuln.models';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [CommonModule, TranslateModule, TopbarComponent, VennDiagramComponent, SectionViewComponent],
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  activeSection: AnyVennSection | null = null;
+
+  onSectionSelected(section: AnyVennSection): void {
+    this.activeSection = section;
+  }
+
+  onBack(): void {
+    this.activeSection = null;
+  }
+}
