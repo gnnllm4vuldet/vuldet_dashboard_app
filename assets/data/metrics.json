@@ -1,0 +1,137 @@
+{
+    "metrics": [
+        {
+            "method": "GNN",
+            "FPR": 0.1166666667,
+            "FNR": 0.4566666667,
+            "recall": 0.5433333333,
+            "precision": 0.8232323232,
+            "F1-score": 0.6546184739,
+            "accuracy": 0.7133333333,
+            "MCC": 0.4536953707
+        },
+        {
+            "method": "Claude",
+            "FPR": 0.1866666667,
+            "FNR": 0.1966666667,
+            "recall": 0.8033333333,
+            "precision": 0.8114478114,
+            "F1-score": 0.8073701843,
+            "accuracy": 0.8083333333,
+            "MCC": 0.6166975023
+        },
+        {
+            "method": "GPT-4o",
+            "FPR": 0.1766666667,
+            "FNR": 0.2233333333,
+            "recall": 0.7766666667,
+            "precision": 0.8146853147,
+            "F1-score": 0.795221843,
+            "accuracy": 0.8,
+            "MCC": 0.6006544024
+        },
+        {
+            "method": "GNN-and-Claude",
+            "FPR": 0.02666666667,
+            "FNR": 0.5633333333,
+            "recall": 0.4366666667,
+            "precision": 0.9424460432,
+            "F1-score": 0.5968109339,
+            "accuracy": 0.705,
+            "MCC": 0.4859003911
+        },
+        {
+            "method": "GNN-or-Claude",
+            "FPR": 0.2766666667,
+            "FNR": 0.09,
+            "recall": 0.91,
+            "precision": 0.7668539326,
+            "F1-score": 0.8323170732,
+            "accuracy": 0.8166666667,
+            "MCC": 0.6446644011
+        },
+        {
+            "method": "GNN-and-GPT-4o",
+            "FPR": 0.006666666667,
+            "FNR": 0.5666666667,
+            "recall": 0.4333,
+            "precision": 0.9848484848,
+            "F1-score": 0.6018518519,
+            "accuracy": 0.7133333333,
+            "MCC": 0.5149915196
+        },
+        {
+            "method": "GNN-or-GPT-4o",
+            "FPR": 0.2866666667,
+            "FNR": 0.1133333333,
+            "recall": 0.8866666667,
+            "precision": 0.7556818182,
+            "F1-score": 0.8159509202,
+            "accuracy": 0.8,
+            "MCC": 0.6092216562
+        }
+    ],
+    "dataset": {
+        "total": 600,
+        "vulnerable": 300,
+        "secure": 300,
+        "java": 400,
+        "cpp": 200,
+        "javaVul": 200,
+        "javaSecure": 200,
+        "cppVul": 100,
+        "cppSecure": 100
+    },
+    "vennSections": [
+        {
+            "id": "gnn-only",
+            "count": 44
+        },
+        {
+            "id": "claude-only",
+            "count": 19
+        },
+        {
+            "id": "gpt-only",
+            "count": 18
+        },
+        {
+            "id": "gnn-claude",
+            "count": 40
+        },
+        {
+            "id": "gnn-gpt",
+            "count": 36
+        },
+        {
+            "id": "claude-gpt",
+            "count": 118
+        },
+        {
+            "id": "all-three-correct",
+            "count": 308
+        },
+        {
+            "id": "all-three-wrong",
+            "count": 17
+        }
+    ],
+    "vennSectionsManual": [
+        {
+            "id": "gnn-only",
+            "count": 32
+        },
+        {
+            "id": "claude-only",
+            "count": 35
+        },
+        {
+            "id": "both-correct",
+            "count": 35
+        },
+        {
+            "id": "both-wrong",
+            "count": 27
+        }
+    ]
+}
