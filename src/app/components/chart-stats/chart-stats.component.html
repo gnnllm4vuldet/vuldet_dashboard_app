@@ -1,0 +1,96 @@
+<div class="chart-stats" *ngIf="data">
+  <div class="cs-header">
+    <h3 class="cs-title">{{ 'CHARTS.TITLE' | translate }}</h3>
+    <div class="cs-tabs" role="tablist">
+      <button
+        *ngFor="let c of data.charts; trackBy: trackChart"
+        type="button"
+        role="tab"
+        [attr.aria-selected]="c.id === selectedChartId"
+        [class.active]="c.id === selectedChartId"
+        (click)="selectChart(c.id)">
+        {{ c.title }}
+      </button>
+    </div>
+  </div>
+
+  <div class="cs-legend" *ngIf="selectedChart">
+    <span class="cs-legend-item" *ngFor="let cat of selectedChart.categories; trackBy: trackCategory">
+      <span class="swatch" [style.background]="cat.color"></span>
+      {{ cat.label }}
+    </span>
+  </div>
+
+  <div class="cs-chart-wrap">
+    <svg
+      class="cs-chart"
+      [attr.viewBox]="'0 0 ' + width + ' ' + height"
+      preserveAspectRatio="xMidYMid meet"
+      role="img"
+      [attr.aria-label]="selectedChart?.title">
+
+      <!-- gridlines + y-axis ticks -->
+      <g class="grid">
+        <line
+          *ngFor="let t of ticks; trackBy: trackTick"
+          [attr.x1]="margin.left"
+          [attr.x2]="width - margin.right"
+          [attr.y1]="t.y"
+          [attr.y2]="t.y" />
+      </g>
+      <g class="y-axis">
+        <text
+          *ngFor="let t of ticks; trackBy: trackTick"
+          [attr.x]="margin.left - 8"
+          [attr.y]="t.y + 4"
+          text-anchor="end">{{ t.value }}</text>
+      </g>
+
+      <!-- baseline -->
+      <line
+        class="baseline"
+        [attr.x1]="margin.left"
+        [attr.x2]="width - margin.right"
+        [attr.y1]="baselineY"
+        [attr.y2]="baselineY" />
+
+      <!-- bars -->
+      <g class="bars">
+        <rect
+          *ngFor="let b of bars; trackBy: trackBar"
+          [attr.x]="b.x"
+          [attr.y]="b.y"
+          [attr.width]="b.width"
+          [attr.height]="b.height"
+          [attr.fill]="b.color"
+          [class.dim]="hovered && hovered !== b"
+          (mouseenter)="onBarEnter(b, $event)"
+          (mousemove)="onBarMove($event)"
+          (mouseleave)="onBarLeave()">
+          <title>{{ b.group }} · {{ b.category }}: {{ b.value }}</title>
+        </rect>
+      </g>
+
+      <!-- group labels -->
+      <g class="group-labels">
+        <text
+          *ngFor="let g of groupLayouts; trackBy: trackGroup"
+          [attr.x]="g.x + g.width / 2"
+          [attr.y]="groupLabelY"
+          text-anchor="middle">{{ g.label }}</text>
+      </g>
+    </svg>
+
+    <div
+      class="cs-tooltip"
+      *ngIf="hovered"
+      [style.left.px]="mouseX + 12"
+      [style.top.px]="mouseY + 12">
+      <div class="tt-row"><strong>{{ hovered.group }}</strong></div>
+      <div class="tt-row">
+        <span class="swatch" [style.background]="hovered.color"></span>
+        {{ hovered.category }}: <strong>{{ hovered.value }}</strong>
+      </div>
+    </div>
+  </div>
+</div>

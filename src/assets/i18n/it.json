@@ -1,0 +1,86 @@
+{
+  "TOPBAR": {
+    "TITLE": "Rilevamento Vulnerabilità · Confronto Modelli",
+    "HOME": "Home"
+  },
+  "HEADER": {
+    "TITLE": "Rilevamento Vulnerabilità",
+    "SUBTITLE": "600 campioni · GNN + 2 LLM · 2024",
+    "GRANT_LABEL": "supportato da",
+    "COLLABORATION": "Una collaborazione tra"
+  },
+  "VENN": {
+    "TITLE": "Vulnerabilità rilevate — Diagramma di Venn",
+    "HINT": "passa sopra · clicca per esplorare",
+    "INTERSECTIONS": "Intersezioni",
+    "EXCLUSIVE": "esclusivo",
+    "ALL_CORRECT": "tutti corretti",
+    "ALL_WRONG": "Tutti sbagliati",
+    "ALL_CORRECT_LABEL": "Tutti corretti",
+    "ALL_WRONG_LABEL": "Tutti sbagliati",
+    "BOTH_CORRECT_LABEL": "Entrambi corretti",
+    "BOTH_WRONG_LABEL": "Entrambi sbagliati",
+    "BOTH_WRONG": "entrambi sbagliati"
+  },
+  "CHARTS": {
+    "TITLE": "Caratteristiche del dataset"
+  },
+  "CASES_SWITCHER": {
+    "LABEL": "Mostra solo voci valutate",
+    "NORMAL_HINT": "600 campioni · GNN + LLM + CodeBERT",
+    "MANUAL_HINT": "300 campioni · GNN + LLM + CodeBERT"
+  },
+  "SECTION": {
+    "BACK": "Indietro",
+    "SWITCH_LABEL": "Cambia intersezione",
+    "LABELS": {
+      "gnn-only":      "Solo GNN — 24 casi",
+      "llm-only":      "Solo LLM — 63 casi",
+      "codebert-only": "Solo CodeBERT — 17 casi",
+      "gnn-llm":       "GNN ∩ LLM — 85 casi",
+      "gnn-codebert":  "GNN ∩ CodeBERT — 56 casi",
+      "llm-codebert":  "LLM ∩ CodeBERT — 74 casi",
+      "all-three-correct": "Tutti corretti — 263",
+      "all-three-wrong":   "Tutti sbagliati — 18"
+    },
+    "DESCRIPTIONS": {
+      "gnn-only":      "Solo GNN ha rilevato queste vulnerabilità",
+      "llm-only":      "Solo LLM ha rilevato queste vulnerabilità",
+      "codebert-only": "Solo CodeBERT ha rilevato queste vulnerabilità",
+      "gnn-llm":       "GNN e LLM concordano, CodeBERT ha mancato",
+      "gnn-codebert":  "GNN e CodeBERT concordano, LLM ha mancato",
+      "llm-codebert":  "LLM e CodeBERT concordano, GNN ha mancato",
+      "all-three-correct": "Tutti e tre i modelli corretti — consenso perfetto",
+      "all-three-wrong":   "Tutti e tre i modelli sbagliati"
+    }
+  },
+  "FILTER": {
+    "GROUND_TRUTH_LABEL": "Filtra per ground truth",
+    "BOTH": "Entrambi",
+    "VULNERABLE": "Vulnerabile",
+    "SECURE": "Sicuro"
+  },
+  "CASE_LIST": {
+    "ID": "Identificatore",
+    "GROUND_TRUTH": "Ground truth",
+    "SELECT_HINT": "Seleziona un caso dalla lista"
+  },
+  "CODE_PROPS": {
+    "TITLE": "Proprietà",
+    "LANGUAGE": "Linguaggio",
+    "CWE_ID": "ID CWE",
+    "OWASP": "OWASP Top 10",
+    "MVC": "Categoria MVC",
+    "FIX_SIZE": "Dimensione Fix",
+    "FIX_TYPE": "Tipo Fix"
+  },
+  "CODE_DETAIL": {
+    "SOURCE": "codice sorgente",
+    "VERDICTS": "Verdetti dei modelli",
+    "GROUND_TRUTH": "Ground truth",
+    "CORRECT": "corretto",
+    "WRONG": "sbagliato",
+    "VULNERABLE": "VULNERABILE",
+    "SECURE": "SICURO"
+  }
+}

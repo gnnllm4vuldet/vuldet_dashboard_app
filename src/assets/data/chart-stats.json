@@ -1,0 +1,342 @@
+{
+    "groups": [
+        {
+            "id": "gnn-only",
+            "label": "GNN only"
+        },
+        {
+            "id": "llm-only",
+            "label": "LLM only"
+        },
+        {
+            "id": "codebert-only",
+            "label": "CodeBERT only"
+        },
+        {
+            "id": "gnn-llm",
+            "label": "GNN \u2229 LLM"
+        },
+        {
+            "id": "gnn-codebert",
+            "label": "GNN \u2229 CodeBERT"
+        },
+        {
+            "id": "llm-codebert",
+            "label": "LLM \u2229 CodeBERT"
+        },
+        {
+            "id": "all-three-wrong",
+            "label": "All 3 wrong"
+        },
+        {
+            "id": "all-three-correct",
+            "label": "All 3 correct"
+        }
+    ],
+    "charts": [
+        {
+            "id": "fix_size",
+            "title": "Fix size",
+            "categories": [
+                {
+                    "id": "Large",
+                    "label": "Large",
+                    "color": "#4c78a8"
+                },
+                {
+                    "id": "Medium",
+                    "label": "Medium",
+                    "color": "#f58518"
+                },
+                {
+                    "id": "Small",
+                    "label": "Small",
+                    "color": "#e45756"
+                }
+            ],
+            "values": {
+                "all-three-wrong": {
+                    "Small": 14,
+                    "Medium": 0,
+                    "Large": 1
+                },
+                "all-three-correct": {
+                    "Small": 43,
+                    "Medium": 16,
+                    "Large": 10
+                },
+                "gnn-only": {
+                    "Small": 11,
+                    "Medium": 1,
+                    "Large": 1
+                },
+                "llm-only": {
+                    "Small": 49,
+                    "Medium": 10,
+                    "Large": 0
+                },
+                "codebert-only": {
+                    "Small": 8,
+                    "Medium": 4,
+                    "Large": 0
+                },
+                "gnn-llm": {
+                    "Small": 50,
+                    "Medium": 10,
+                    "Large": 2
+                },
+                "gnn-codebert": {
+                    "Small": 4,
+                    "Medium": 8,
+                    "Large": 4
+                },
+                "llm-codebert": {
+                    "Small": 34,
+                    "Medium": 11,
+                    "Large": 6
+                }
+            }
+        },
+        {
+            "id": "fix_type",
+            "title": "Fix type",
+            "categories": [
+                {
+                    "id": "Deleted lines",
+                    "label": "Deleted lines",
+                    "color": "#4c78a8"
+                },
+                {
+                    "id": "Added lines",
+                    "label": "Added lines",
+                    "color": "#f58518"
+                },
+                {
+                    "id": "Both",
+                    "label": "Both",
+                    "color": "#e45756"
+                }
+            ],
+            "values": {
+                "all-three-wrong": {
+                    "Deleted lines": 5,
+                    "Added lines": 0,
+                    "Both": 10
+                },
+                "all-three-correct": {
+                    "Deleted lines": 0,
+                    "Added lines": 8,
+                    "Both": 61
+                },
+                "gnn-only": {
+                    "Deleted lines": 1,
+                    "Added lines": 2,
+                    "Both": 10
+                },
+                "llm-only": {
+                    "Deleted lines": 0,
+                    "Added lines": 16,
+                    "Both": 43
+                },
+                "codebert-only": {
+                    "Deleted lines": 1,
+                    "Added lines": 1,
+                    "Both": 10
+                },
+                "gnn-llm": {
+                    "Deleted lines": 2,
+                    "Added lines": 5,
+                    "Both": 55
+                },
+                "gnn-codebert": {
+                    "Deleted lines": 1,
+                    "Added lines": 0,
+                    "Both": 15
+                },
+                "llm-codebert": {
+                    "Deleted lines": 1,
+                    "Added lines": 14,
+                    "Both": 36
+                }
+            }
+        },
+        {
+            "id": "mvc",
+            "title": "MVC",
+            "categories": [
+                {
+                    "id": "View",
+                    "label": "View",
+                    "color": "#4c78a8"
+                },
+                {
+                    "id": "Controller",
+                    "label": "Controller",
+                    "color": "#f58518"
+                },
+                {
+                    "id": "Model",
+                    "label": "Model",
+                    "color": "#e45756"
+                }
+            ],
+            "values": {
+                "all-three-wrong": {
+                    "Model": 11,
+                    "View": 0,
+                    "Controller": 4
+                },
+                "all-three-correct": {
+                    "Model": 42,
+                    "View": 4,
+                    "Controller": 23
+                },
+                "gnn-only": {
+                    "Model": 5,
+                    "View": 0,
+                    "Controller": 9
+                },
+                "llm-only": {
+                    "Model": 26,
+                    "View": 2,
+                    "Controller": 29
+                },
+                "codebert-only": {
+                    "Model": 5,
+                    "View": 1,
+                    "Controller": 6
+                },
+                "gnn-llm": {
+                    "Model": 20,
+                    "View": 0,
+                    "Controller": 40
+                },
+                "gnn-codebert": {
+                    "Model": 8,
+                    "View": 1,
+                    "Controller": 9
+                },
+                "llm-codebert": {
+                    "Model": 26,
+                    "View": 4,
+                    "Controller": 21
+                }
+            }
+        },
+        {
+            "id": "owasp_top_10",
+            "title": "OWASP Top 10",
+            "categories": [
+                {
+                    "id": "Insecure Design",
+                    "label": "Insecure Design",
+                    "color": "#4c78a8"
+                },
+                {
+                    "id": "Cryptographic Failures",
+                    "label": "Cryptographic Failures",
+                    "color": "#f58518"
+                },
+                {
+                    "id": "Security Misconfiguration",
+                    "label": "Security Misconfiguration",
+                    "color": "#e45756"
+                },
+                {
+                    "id": "Software Data Integrity",
+                    "label": "Software or Data Integrity Failures",
+                    "color": "#72b7b2"
+                },
+                {
+                    "id": "Broken Access Control",
+                    "label": "Broken Access Control",
+                    "color": "#54a24b"
+                },
+                {
+                    "id": "Injection",
+                    "label": "Injection",
+                    "color": "#eeca3b"
+                },
+                {
+                    "id": "Not Mapping",
+                    "label": "Not Mapping",
+                    "color": "#b279a2"
+                }
+            ],
+            "values": {
+                "all-three-wrong": {
+                    "Insecure Design": 0,
+                    "Cryptographic Failures": 1,
+                    "Security Misconfiguration": 0,
+                    "Software Data Integrity": 0,
+                    "Broken Access Control": 5,
+                    "Injection": 7,
+                    "Not Mapping": 1
+                },
+                "all-three-correct": {
+                    "Insecure Design": 3,
+                    "Cryptographic Failures": 2,
+                    "Security Misconfiguration": 5,
+                    "Software Data Integrity": 0,
+                    "Broken Access Control": 5,
+                    "Injection": 37,
+                    "Not Mapping": 12
+                },
+                "gnn-only": {
+                    "Insecure Design": 0,
+                    "Cryptographic Failures": 0,
+                    "Security Misconfiguration": 0,
+                    "Software Data Integrity": 0,
+                    "Broken Access Control": 4,
+                    "Injection": 6,
+                    "Not Mapping": 3
+                },
+                "llm-only": {
+                    "Insecure Design": 0,
+                    "Cryptographic Failures": 0,
+                    "Security Misconfiguration": 6,
+                    "Software Data Integrity": 0,
+                    "Broken Access Control": 5,
+                    "Injection": 26,
+                    "Not Mapping": 10
+                },
+                "codebert-only": {
+                    "Insecure Design": 0,
+                    "Cryptographic Failures": 0,
+                    "Security Misconfiguration": 1,
+                    "Software Data Integrity": 0,
+                    "Broken Access Control": 1,
+                    "Injection": 9,
+                    "Not Mapping": 1
+                },
+                "gnn-llm": {
+                    "Insecure Design": 1,
+                    "Cryptographic Failures": 1,
+                    "Security Misconfiguration": 0,
+                    "Software Data Integrity": 0,
+                    "Broken Access Control": 6,
+                    "Injection": 44,
+                    "Not Mapping": 7
+                },
+                "gnn-codebert": {
+                    "Insecure Design": 1,
+                    "Cryptographic Failures": 0,
+                    "Security Misconfiguration": 0,
+                    "Software Data Integrity": 0,
+                    "Broken Access Control": 1,
+                    "Injection": 8,
+                    "Not Mapping": 8
+                },
+                "llm-codebert": {
+                    "Insecure Design": 0,
+                    "Cryptographic Failures": 1,
+                    "Security Misconfiguration": 3,
+                    "Software Data Integrity": 0,
+                    "Broken Access Control": 5,
+                    "Injection": 33,
+                    "Not Mapping": 7
+                }
+            }
+        }
+    ]
+}

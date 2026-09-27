@@ -7,18 +7,28 @@
   align-items: center;
   gap: 12px;
   margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .sec-topbar {
+    gap: 8px;
+    margin-bottom: 12px;
+  }
 }
 
 .sec-desc {
-  font-size: 12px;
-  color: var(--text3);
+  font-size: 13px;
+  color: var(--text2);
+  font-weight: 400;
 }
 
 .loading {
-  padding: 40px;
+  padding: 60px 40px;
   text-align: center;
-  color: var(--text3);
-  font-size: 12px;
+  color: var(--text2);
+  font-size: 14px;
+  font-weight: 500;
 }
 
 /* LIST left · CODE middle · PROPS right */
@@ -27,6 +37,56 @@
   grid-template-columns: 300px 1fr 220px;
   gap: 14px;
   align-items: start;
+}
+
+/* Tablet: Stack properties below code */
+@media (max-width: 1024px) {
+  .sec-layout {
+    grid-template-columns: 280px 1fr;
+    grid-template-areas:
+      "list code"
+      "list props";
+  }
+  
+  .list-col { grid-area: list; }
+  .code-col { grid-area: code; }
+  .props-col { 
+    grid-area: props;
+    position: static;
+  }
+}
+
+/* Mobile: Full stack */
+@media (max-width: 768px) {
+  .sec-layout {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "list"
+      "code"
+      "props";
+    gap: 16px;
+  }
+  
+  .list-col {
+    position: static;
+    max-height: none;
+    
+    &.collapsed {
+      max-height: none;
+    }
+  }
+  
+  .props-col {
+    position: static;
+  }
+  
+  .case-list-scroll {
+    max-height: 300px;
+  }
+  
+  .case-list-content.hidden {
+    display: none;
+  }
 }
 
 .code-col {
@@ -62,20 +122,108 @@
 
 /* Placeholder when no case selected */
 .ph-code {
-  background: var(--card);
-  border: 1px solid var(--border);
+  background: linear-gradient(135deg, rgba(30, 61, 184, 0.03), rgba(124, 34, 176, 0.03));
+  border: 2px dashed var(--border);
   border-radius: var(--radius);
-  padding: 48px 32px;
+  padding: 60px 32px;
   text-align: center;
-  color: var(--text3);
+  color: var(--text2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    border-color: rgba(30, 61, 184, 0.3);
+    background: linear-gradient(135deg, rgba(30, 61, 184, 0.06), rgba(124, 34, 176, 0.06));
+  }
 }
 
 .ph-arrow {
-  font-size: 28px;
-  margin-bottom: 10px;
-  opacity: 0.2;
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.4;
+  animation: pointLeft 2s ease-in-out infinite;
+  color: var(--text2);
 }
 
 .ph-text {
-  font-size: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: var(--text1);
+  letter-spacing: 0.01em;
+  line-height: 1.5;
+}
+
+@keyframes pointLeft {
+  0%, 100% {
+    transform: translateX(0);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateX(-8px);
+    opacity: 0.7;
+  }
+}
+
+/* Mobile case toggle button */
+.mobile-case-toggle {
+  display: none;
+  
+  @media (max-width: 768px) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 12px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow);
+    margin-bottom: 16px;
+    
+    &:hover {
+      background: var(--bg-secondary);
+      box-shadow: var(--shadow-md);
+    }
+    
+    &:active {
+      transform: scale(0.98);
+    }
+    
+    .toggle-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gnn);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    
+    svg {
+      flex-shrink: 0;
+      color: var(--text2);
+    }
+  }
+}
+
+.case-list-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  
+  @media (max-width: 768px) {
+    &.hidden {
+      display: none;
+    }
+  }
 }

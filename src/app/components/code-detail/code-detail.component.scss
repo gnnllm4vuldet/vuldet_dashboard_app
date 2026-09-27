@@ -3,130 +3,271 @@
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
-  min-width: 0; /* stay within the flex/grid cell */
+  min-width: 0;
+  max-width: 100%;
+  box-shadow: var(--shadow);
 }
 
 .code-head {
-  padding: 10px 16px;
+  padding: 12px 18px;
   border-bottom: 1px solid var(--border);
-  background: #faf9f6;
+  background: var(--bg-secondary);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  gap: 12px;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    padding: 10px 12px;
+    gap: 8px;
+  }
 }
 
 .code-id {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
+  font-size: 12px;
   color: var(--gnn);
-  font-weight: 500;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+
+  @media (max-width: 768px) {
+    font-size: 11px;
+  }
 }
 
 .code-meta {
   display: flex;
   align-items: center;
   gap: 6px;
+  flex-wrap: wrap;
 }
 
 .lang-badge, .cwe-badge {
-  font-size: 9px;
-  font-weight: 500;
+  font-size: 10px;
+  font-weight: 600;
   font-family: 'IBM Plex Mono', monospace;
-  padding: 2px 6px;
-  border-radius: 4px;
+  padding: 3px 8px;
+  border-radius: 6px;
   background: var(--bg);
   border: 1px solid var(--border);
-  color: var(--text3);
+  color: var(--text2);
+  letter-spacing: 0.02em;
 }
 
 .cwe-badge {
-  color: #b84a0a;
-  background: #fff2e8;
-  border-color: #f0b080;
+  color: var(--llama);
+  background: var(--llama-l);
+  border-color: var(--llama-m);
 }
 
 .source-label {
-  font-size: 9px;
+  font-size: 10px;
   color: var(--text3);
   font-family: 'IBM Plex Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
 }
 
 .code-desc {
-  padding: 8px 16px;
-  font-size: 11px;
+  padding: 10px 18px;
+  font-size: 12px;
   color: var(--text2);
-  background: #faf9f6;
+  background: var(--bg-secondary);
   border-bottom: 1px solid var(--border);
   font-style: italic;
+  line-height: 1.6;
+
+  @media (max-width: 768px) {
+    padding: 8px 12px;
+    font-size: 11px;
+  }
 }
 
 .code-body {
-  /*background: #f7f6f3;*/  /*for light theme*/
-  background: #1c1e2a;  /*for dark theme*/
-  padding: 16px 16px 16px 0;
+  background: #fafaf9;
+  padding: 18px 18px 18px 0;
   overflow-x: auto;
   display: flex;
   gap: 0;
+  border-radius: 0 0 var(--radius) var(--radius);
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
+
+  @media (max-width: 768px) {
+    padding: 12px 8px 12px 0;
+  }
 }
 
 .line-numbers {
   display: flex;
   flex-direction: column;
-  padding: 0 12px 0 12px;
+  padding: 0 14px 0 14px;
   user-select: none;
   flex-shrink: 0;
 
   .line-num {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    /*color: #b0a898;*/ /*for light theme*/
-    color: #3a4060; /*for dark theme*/
+    font-size: 11px;
+    color: var(--text3);
     line-height: 1.7;
     text-align: right;
-    min-width: 20px;
+    min-width: 24px;
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0 8px 0 8px;
+
+    .line-num {
+      font-size: 10px;
+      min-width: 20px;
+    }
   }
 }
 
 .code-pre {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1.7;
   white-space: pre;
   flex: 1;
   min-width: 0;
   margin: 0;
+  color: var(--text1);
+  overflow-x: auto;
 
   code {
     display: block;
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
-    white-space: inherit;
+    white-space: pre;
     background: transparent;
     padding: 0;
+    width: max-content;
+    min-width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 9px;
+    line-height: 1.5;
   }
 }
 
 /* Per-line spans injected by postProcessHighlight() */
 /* ::ng-deep is required because these spans are injected via innerHTML
    and therefore do not receive Angular's emulated-encapsulation attribute */
-:host ::ng-deep .code-line {
+:host .code-line {
   display: block;
   padding-left: 4px;
   border-left: 2px solid transparent;
 }
 
 :host ::ng-deep .vuln-line {
-  background: rgba(220, 55, 40, 0.18);
-  border-left: 2px solid rgba(220, 80, 50, 0.55);
+  background: var(--danger-light);
+  border-left: 3px solid var(--danger);
 }
 
 /* Vulnerable line number in the gutter.
    Must be nested inside .line-numbers to beat the parent selector's specificity
    added by Angular's emulated encapsulation. */
 .line-numbers .line-num.vuln-line-num {
-  color: #e84040;
+  color: var(--danger);
   font-weight: 700;
+}
+
+/* Syntax highlighting overrides for better visibility on light background */
+:host ::ng-deep {
+  .hljs {
+    color: var(--text1);
+    background: transparent;
+  }
+
+  .hljs-comment,
+  .hljs-quote {
+    color: #78716c;
+    font-style: italic;
+  }
+
+  .hljs-keyword,
+  .hljs-selector-tag,
+  .hljs-subst {
+    color: #be123c;
+    font-weight: 600;
+  }
+
+  .hljs-number,
+  .hljs-literal,
+  .hljs-variable,
+  .hljs-template-variable,
+  .hljs-tag .hljs-attr {
+    color: #ea580c;
+  }
+
+  .hljs-string,
+  .hljs-doctag {
+    color: #059669;
+  }
+
+  .hljs-title,
+  .hljs-section,
+  .hljs-selector-id {
+    color: #2563eb;
+    font-weight: 600;
+  }
+
+  .hljs-type,
+  .hljs-class .hljs-title {
+    color: #9333ea;
+    font-weight: 600;
+  }
+
+  .hljs-tag,
+  .hljs-name,
+  .hljs-attribute {
+    color: #0891b2;
+    font-weight: 600;
+  }
+
+  .hljs-regexp,
+  .hljs-link {
+    color: #0d9488;
+  }
+
+  .hljs-symbol,
+  .hljs-bullet {
+    color: #7c3aed;
+  }
+
+  .hljs-built_in,
+  .hljs-builtin-name {
+    color: #0284c7;
+  }
+
+  .hljs-meta {
+    color: #64748b;
+  }
+
+  .hljs-deletion {
+    background: #fee2e2;
+  }
+
+  .hljs-addition {
+    background: #dcfce7;
+  }
+
+  .hljs-emphasis {
+    font-style: italic;
+  }
+
+  .hljs-strong {
+    font-weight: 700;
+  }
 }
 

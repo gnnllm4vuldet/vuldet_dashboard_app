@@ -1,30 +1,25 @@
 import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
-import { importProvidersFrom } from '@angular/core';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HttpClient } from '@angular/common/http';
+import { provideTranslateService, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader, provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import {provideHighlightOptions} from 'ngx-highlightjs';
-
-export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-}
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter([]),
     provideHttpClient(),
-    importProvidersFrom(
-      TranslateModule.forRoot({
-        defaultLanguage: 'en',
-        loader: {
-          provide: TranslateLoader,
-          useFactory: createTranslateLoader,
-          deps: [HttpClient],
-        },
-      })
-    ),
+    provideTranslateService({
+      defaultLanguage: 'en',
+      loader: {
+        provide: TranslateLoader,
+        useClass: TranslateHttpLoader,
+      },
+    }),
+    provideTranslateHttpLoader({
+      prefix: './assets/i18n/',
+      suffix: '.json'
+    }),
     provideHighlightOptions({
       coreLibraryLoader: () => import('highlight.js/lib/core'),
       languages: {

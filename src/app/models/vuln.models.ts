@@ -1,14 +1,14 @@
 export interface ModelPrediction {
-  gnn: 'wrong' | 'correct';
-  gpt: 'wrong' | 'correct';
-  claude: 'wrong' | 'correct';
+  GNN: 'wrong' | 'correct';
+  LLM: 'wrong' | 'correct';
+  CodeBERT: 'wrong' | 'correct';
 }
 
 export interface VulnCase {
   id: string;
-  gnn: 'wrong' | 'correct';
-  gpt: 'wrong' | 'correct';
-  claude: 'wrong' | 'correct';
+  GNN: 'wrong' | 'correct';
+  LLM: 'wrong' | 'correct';
+  CodeBERT: 'wrong' | 'correct';
   groundTruth: 'vulnerable' | 'secure';
   sourceCode: string;
   language: string;
@@ -23,21 +23,18 @@ export interface VulnCase {
 
 export type VennSection =
   | 'gnn-only'
-  | 'claude-only'
-  | 'gpt-only'
-  | 'gnn-claude'
-  | 'claude-gpt'
-  | 'gnn-gpt'
+  | 'llm-only'
+  | 'codebert-only'
+  | 'gnn-llm'
+  | 'llm-codebert'
+  | 'gnn-codebert'
   | 'all-three-correct'
   | 'all-three-wrong';
 
-export type ManualVennSection =
-  | 'gnn-only'
-  | 'claude-only'
-  | 'both-correct'
-  | 'both-wrong';
+// Manual evaluation now uses the same 3-model structure as the normal dataset
+export type ManualVennSection = VennSection;
 
-export type AnyVennSection = VennSection | ManualVennSection;
+export type AnyVennSection = VennSection;
 
 export type CaseSet = 'normal' | 'manual';
 

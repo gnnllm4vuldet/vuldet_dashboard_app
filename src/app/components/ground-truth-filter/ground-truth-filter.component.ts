@@ -1,8 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-
-export type GroundTruthFilter = 'both' | 'vulnerable' | 'secure';
+import { GroundTruthFilter } from '../../services/ground-truth-filter.service';
 
 @Component({
   selector: 'app-ground-truth-filter',

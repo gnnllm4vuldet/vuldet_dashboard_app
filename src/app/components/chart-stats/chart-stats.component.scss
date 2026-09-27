@@ -1,0 +1,159 @@
+.chart-stats {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 24px 16px;
+  box-shadow: var(--shadow-sm);
+  margin-top: 32px;
+
+  @media (max-width: 768px) {
+    padding: 16px;
+    margin-top: 20px;
+  }
+}
+
+.cs-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.cs-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text1);
+  letter-spacing: 0.01em;
+  margin: 0;
+}
+
+.cs-tabs {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 3px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+
+  button {
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: inherit;
+    color: var(--text2);
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+
+    &:hover {
+      color: var(--text1);
+      background: var(--card);
+    }
+
+    &.active {
+      background: var(--card);
+      color: var(--text1);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+    }
+  }
+}
+
+.cs-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  margin-bottom: 12px;
+  font-size: 11px;
+  color: var(--text2);
+}
+
+.cs-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.cs-chart-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.cs-chart {
+  width: 100%;
+  height: auto;
+  display: block;
+  font-family: inherit;
+
+  .grid line {
+    stroke: var(--border);
+    stroke-dasharray: 3 3;
+    stroke-width: 1;
+  }
+
+  .baseline {
+    stroke: var(--border-dark);
+    stroke-width: 1;
+  }
+
+  .y-axis text,
+  .group-labels text {
+    font-size: 11px;
+    fill: var(--text2);
+    font-family: inherit;
+  }
+
+  .group-labels text {
+    font-weight: 500;
+    fill: var(--text1);
+  }
+
+  .bars rect {
+    cursor: pointer;
+    transition: opacity 0.18s ease;
+
+    &.dim {
+      opacity: 0.35;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.cs-tooltip {
+  position: absolute;
+  pointer-events: none;
+  background: var(--text1);
+  color: var(--text-inverse);
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  line-height: 1.4;
+  box-shadow: var(--shadow-md);
+  z-index: 10;
+  white-space: nowrap;
+
+  .tt-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .swatch {
+    border: 1px solid rgba(255, 255, 255, 0.25);
+  }
+}

@@ -20,14 +20,16 @@ export class IntersectionSwitcherComponent implements OnInit, OnDestroy {
   isManual = false;
 
   readonly normalSections: AnyVennSection[] = [
-    'gnn-only', 'claude-only', 'gpt-only',
-    'gnn-claude', 'gnn-gpt', 'claude-gpt',
+    'gnn-only', 'llm-only', 'codebert-only',
+    'gnn-llm', 'gnn-codebert', 'llm-codebert',
     'all-three-correct', 'all-three-wrong',
   ];
 
+  // Manual evaluation now uses the same 3-model sections as the normal dataset
   readonly manualSections: AnyVennSection[] = [
-    'gnn-only', 'claude-only',
-    'both-correct', 'both-wrong',
+    'gnn-only', 'llm-only', 'codebert-only',
+    'gnn-llm', 'gnn-codebert', 'llm-codebert',
+    'all-three-correct', 'all-three-wrong',
   ];
 
   get sections(): AnyVennSection[] {

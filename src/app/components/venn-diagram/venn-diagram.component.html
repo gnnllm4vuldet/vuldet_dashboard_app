@@ -1,7 +1,17 @@
 <div class="venn-layout">
 
+  <!-- LOADING OVERLAY -->
+  <div class="loading-overlay" *ngIf="isLoading">
+    <div class="loading-spinner">
+      <div class="spinner-ring"></div>
+      <div class="spinner-ring"></div>
+      <div class="spinner-ring"></div>
+      <div class="loading-text">Loading data...</div>
+    </div>
+  </div>
+
   <!-- LEFT SIDEBAR -->
-  <div class="venn-side">
+  <div class="venn-side" [class.loading-blur]="isLoading">
     <div
       *ngFor="let item of leftSide"
       class="vs-item"
@@ -30,7 +40,7 @@
   </div>
 
   <!-- SVG VENN DIAGRAM -->
-  <svg class="venn-svg" width="540" height="480" viewBox="0 0 540 480">
+  <svg class="venn-svg" [class.loading-blur]="isLoading" width="540" height="480" viewBox="0 0 540 480">
 
     <!-- Main circles -->
     <g
@@ -108,9 +118,8 @@
       </text>
     </g>
 
-    <!-- ── Normal mode: all-three-correct center ── -->
+    <!-- ── All-three-correct center ── -->
     <g
-      *ngIf="!isManualMode"
       class="vint"
       [class.hovered]="isHovered('all-three-correct')"
       (mouseenter)="onHover('all-three-correct')"
@@ -126,9 +135,8 @@
       </text>
     </g>
 
-    <!-- ── Normal mode: all-three-wrong text link ── -->
+    <!-- ── All-three-wrong text link ── -->
     <text
-      *ngIf="!isManualMode"
       x="10" y="474"
       fill="#c0392b"
       class="lbl-allwrong"
@@ -136,27 +144,91 @@
       (mouseleave)="onLeave()"
       (click)="select('all-three-wrong')"
       [class.hovered-text]="isHovered('all-three-wrong')">
-      {{ 'VENN.ALL_WRONG' | translate }}
+      {{ 'VENN.ALL_WRONG' | translate }} ({{ allWrongCount }})
     </text>
 
-    <!-- ── Manual mode: both-wrong text link ── -->
-    <text
-      *ngIf="isManualMode"
-      x="10" y="474"
-      fill="#c0392b"
-      class="lbl-allwrong"
-      (mouseenter)="onHover('both-wrong')"
-      (mouseleave)="onLeave()"
-      (click)="select('both-wrong')"
-      [class.hovered-text]="isHovered('both-wrong')">
-      {{ 'VENN.BOTH_WRONG' | translate }} ({{ bothWrongCount }})
-    </text>
+
 
   </svg>
 
   <!-- CASES SWITCHER (right side) -->
-  <div class="venn-switcher-col">
+  <div class="venn-switcher-col" [class.loading-blur]="isLoading">
     <app-cases-switcher></app-cases-switcher>
+    <app-ground-truth-filter
+      [value]="groundTruthFilter"
+      (filterChange)="onGroundTruthFilterChange($event)">
+    </app-ground-truth-filter>
   </div>
 
+</div>
+
+<!-- PERFORMANCE METRICS TABLE -->
+<div class="metrics-table-container">
+  <h3 class="metrics-title">Model Performance Metrics</h3>
+  <div class="table-wrapper">
+    <table class="metrics-table">
+      <thead>
+        <tr>
+          <th class="col-model">Model</th>
+          <th class="sortable" (click)="sortBy('fpr')">
+            <span class="th-content">
+              <span>FPR</span>
+              <span class="sort-icon">{{ getSortIcon('fpr') }}</span>
+            </span>
+          </th>
+          <th class="sortable" (click)="sortBy('fnr')">
+            <span class="th-content">
+              <span>FNR</span>
+              <span class="sort-icon">{{ getSortIcon('fnr') }}</span>
+            </span>
+          </th>
+          <th class="sortable" (click)="sortBy('precision')">
+            <span class="th-content">
+              <span>Precision</span>
+              <span class="sort-icon">{{ getSortIcon('precision') }}</span>
+            </span>
+          </th>
+          <th class="sortable" (click)="sortBy('recall')">
+            <span class="th-content">
+              <span>Recall</span>
+              <span class="sort-icon">{{ getSortIcon('recall') }}</span>
+            </span>
+          </th>
+          <th class="sortable" (click)="sortBy('f1Score')">
+            <span class="th-content">
+              <span>F1-score</span>
+              <span class="sort-icon">{{ getSortIcon('f1Score') }}</span>
+            </span>
+          </th>
+          <th class="sortable" (click)="sortBy('accuracy')">
+            <span class="th-content">
+              <span>Accuracy</span>
+              <span class="sort-icon">{{ getSortIcon('accuracy') }}</span>
+            </span>
+          </th>
+          <th class="sortable" (click)="sortBy('mcc')">
+            <span class="th-content">
+              <span>MCC</span>
+              <span class="sort-icon">{{ getSortIcon('mcc') }}</span>
+            </span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let metric of performanceMetrics" 
+            [class.clickable]="metric.section"
+            [class.single-model]="isSingleModel(metric)"
+            (click)="metric.section && select(metric.section)">
+          <td class="col-model">{{ metric.model }}</td>
+          <td [class]="getCellClass(metric, 'fpr')">{{ metric.fpr.toFixed(4) }}</td>
+          <td [class]="getCellClass(metric, 'fnr')">{{ metric.fnr.toFixed(4) }}</td>
+          <td [class]="getCellClass(metric, 'precision')">{{ metric.precision.toFixed(4) }}</td>
+          <td [class]="getCellClass(metric, 'recall')">{{ metric.recall.toFixed(4) }}</td>
+          <td [class]="getCellClass(metric, 'f1Score')">{{ metric.f1Score.toFixed(4) }}</td>
+          <td [class]="getCellClass(metric, 'accuracy')">{{ metric.accuracy.toFixed(4) }}</td>
+          <td [class]="getCellClass(metric, 'mcc')">{{ metric.mcc.toFixed(4) }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

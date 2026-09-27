@@ -3,35 +3,38 @@
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
+  box-shadow: var(--shadow);
 }
 
 .vd-head {
-  padding: 10px 16px;
+  padding: 12px 18px;
   border-bottom: 1px solid var(--border);
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--text3);
-  background: #faf9f6;
+  background: var(--bg-secondary);
 }
 
 .vd-row {
-  padding: 11px 16px;
-  border-bottom: 1px solid #f5f2ec;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-light);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 8px;
 
   &:last-child { border-bottom: none; }
 }
 
 .vd-model {
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 6px;
+  flex-shrink: 0;
 }
 
 .vdot {
@@ -42,28 +45,34 @@
 }
 
 .vd-right {
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: auto auto;
   gap: 6px;
+  align-items: center;
+  justify-content: end;
 }
 
 .vlbl {
   font-size: 10px;
-  font-weight: 500;
-  padding: 3px 9px;
+  font-weight: 600;
+  padding: 3px 8px;
   border-radius: 5px;
+  white-space: nowrap;
+  text-transform: lowercase;
 
-  &.lv { background: #fff0ee; color: #b83020; }
-  &.lb { background: #edf9f2; color: #127840; }
+  &.lv { background: var(--danger-light); color: var(--danger); border: 1px solid #fecaca; } /* VULNERABLE = red */
+  &.lb { background: var(--safe-light); color: var(--safe); border: 1px solid #bbf7d0; } /* SECURE = green */
 }
 
 .atag {
   font-size: 9px;
-  font-weight: 500;
-  padding: 2px 6px;
-  border-radius: 4px;
+  font-weight: 600;
+  padding: 3px 7px;
+  border-radius: 5px;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
 
-  &.aok  { background: #edf9f2; color: #0a7840; }
-  &.abad { background: #fff0ee; color: #c0392b; }
+  &.aok  { background: var(--safe-light); color: var(--safe); border: 1px solid #bbf7d0; }
+  &.abad { background: var(--danger-light); color: var(--danger); border: 1px solid #fecaca; }
 }
 

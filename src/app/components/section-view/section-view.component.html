@@ -29,24 +29,35 @@
   <div *ngIf="!loading" class="sec-layout">
 
     <!-- LEFT: intersection switcher + case list -->
-    <div class="list-col">
+    <div class="list-col" [class.collapsed]="caseListCollapsed">
 
-      <app-intersection-switcher
-        [activeSection]="activeSection"
-        (sectionChange)="onSectionChange($event)">
-      </app-intersection-switcher>
+      <!-- Mobile: Show selected case as toggle button when collapsed -->
+      <button *ngIf="selectedCase && caseListCollapsed" class="mobile-case-toggle" (click)="toggleCaseList()">
+        <span class="toggle-label">{{ selectedCase.id }}</span>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
 
-      <app-ground-truth-filter
-        [value]="groundTruthFilter"
-        (filterChange)="onGroundTruthFilterChange($event)">
-      </app-ground-truth-filter>
+      <!-- Case list content (collapsible on mobile) -->
+      <div class="case-list-content" [class.hidden]="caseListCollapsed">
+        <app-intersection-switcher
+          [activeSection]="activeSection"
+          (sectionChange)="onSectionChange($event)">
+        </app-intersection-switcher>
 
-      <div class="case-list-scroll">
-        <app-case-list
-          [cases]="filteredCases"
-          [selectedCaseId]="selectedCase?.id ?? null"
-          (caseSelected)="onCaseSelected($event)">
-        </app-case-list>
+        <app-ground-truth-filter
+          [value]="groundTruthFilter"
+          (filterChange)="onGroundTruthFilterChange($event)">
+        </app-ground-truth-filter>
+
+        <div class="case-list-scroll">
+          <app-case-list
+            [cases]="filteredCases"
+            [selectedCaseId]="selectedCase?.id ?? null"
+            (caseSelected)="onCaseSelected($event)">
+          </app-case-list>
+        </div>
       </div>
     </div>
 

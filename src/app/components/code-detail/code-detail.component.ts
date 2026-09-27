@@ -1,70 +1,91 @@
-import { Component, Input, OnChanges, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { Highlight } from 'ngx-highlightjs';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import hljs from 'highlight.js/lib/core';
+import java from 'highlight.js/lib/languages/java';
+import cpp from 'highlight.js/lib/languages/cpp';
 import { VulnCase } from '../../models/vuln.models';
 
-interface CodeLine {
-  text: string;
-}
+// Register languages once at module level (not per component instance)
+hljs.registerLanguage('java', java);
+hljs.registerLanguage('cpp', cpp);
 
 @Component({
   selector: 'app-code-detail',
   standalone: true,
-  imports: [CommonModule, TranslateModule, Highlight],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './code-detail.component.html',
   styleUrls: ['./code-detail.component.scss']
 })
 export class CodeDetailComponent implements OnChanges {
   @Input() vulnCase!: VulnCase;
-  @ViewChild('codeEl', { read: ElementRef }) codeEl!: ElementRef<HTMLElement>;
 
-  codeLines: CodeLine[] = [];
+  highlightedHtml: SafeHtml = '';
+  codeLines: number[] = [];
   private vulnLineSet = new Set<number>();
+  /** Source code with line endings normalized to plain \n */
+  private normalizedSource = '';
+
+  constructor(private sanitizer: DomSanitizer) {}
 
   ngOnChanges(): void {
     if (!this.vulnCase) return;
+    // Normalize \r\n (Windows) and bare \r (classic Mac) to plain \n once,
+    // so both the gutter and the highlighted HTML see exactly the same lines.
+    this.normalizedSource = this.vulnCase.sourceCode
+      .replace(/\r\n/g, '\n')
+      .replace(/\r/g, '\n');
     this.vulnLineSet = new Set<number>(this.vulnCase.vulnerableLines ?? []);
     this.buildCodeLines();
-    // Defer postprocessing so ngx-highlightjs has time to finish rendering
-    // (it may highlight asynchronously) before we read and rewrite innerHTML.
-    setTimeout(() => this.postProcessHighlight(), 0);
+    this.buildHighlightedHtml();
   }
 
   private buildCodeLines(): void {
-    const lines = this.vulnCase.sourceCode.split('\n');
-    this.codeLines = lines.map(text => ({ text }));
+    this.codeLines = this.normalizedSource.split('\n').map((_, i) => i + 1);
+  }
+
+  private buildHighlightedHtml(): void {
+    const lang = this.highlightLang;
+    let highlighted: string;
+
+    try {
+      highlighted = lang
+        ? hljs.highlight(this.normalizedSource, { language: lang }).value
+        : hljs.highlightAuto(this.normalizedSource).value;
+    } catch {
+      // Fallback: plain text with HTML entities escaped
+      highlighted = this.escapeHtml(this.normalizedSource);
+    }
+
+    const lines = highlighted.split('\n');
+
+    const html = lines
+      .map((lineHtml, i) => {
+        const cls = this.vulnLineSet.has(i + 1) ? 'code-line vuln-line' : 'code-line';
+        return `<span class="${cls}">${lineHtml}\n</span>`;
+      })
+      .join('');
+
+    this.highlightedHtml = this.sanitizer.bypassSecurityTrustHtml(html);
+  }
+
+  private escapeHtml(text: string): string {
+    return text
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
   }
 
   isVulnLine(lineNum: number): boolean {
     return this.vulnLineSet.has(lineNum);
   }
 
-  private postProcessHighlight(): void {
-    const el = this.codeEl?.nativeElement;
-    if (!el) return;
-
-    const rawHtml = el.innerHTML;
-    // Guard: skip if empty or already post-processed
-    if (!rawHtml || rawHtml.includes('code-line')) return;
-
-    const lines = rawHtml.split('\n');
-    const newHtml = lines.map((lineHtml, i) => {
-      const lineNum = i + 1;
-      const cls = this.vulnLineSet.has(lineNum)
-        ? 'code-line vuln-line'
-        : 'code-line';
-      return `<span class="${cls}">${lineHtml}</span>`;
-    }).join('');
-
-    el.innerHTML = newHtml;
-  }
-
   get highlightLang(): string {
     switch (this.vulnCase?.language) {
-      case 'Java':   return 'java';
-      case 'C/C++':  return 'cpp';
-      default:       return '';
+      case 'Java':  return 'java';
+      case 'C/C++': return 'cpp';
+      default:      return '';
     }
   }
 }

@@ -16,13 +16,10 @@
   <div class="code-body">
     <div class="line-numbers">
       <span
-        *ngFor="let line of codeLines; let i = index"
+        *ngFor="let lineNum of codeLines"
         class="line-num"
-        [class.vuln-line-num]="isVulnLine(i + 1)">{{ i + 1 }}</span>
+        [class.vuln-line-num]="isVulnLine(lineNum)">{{ lineNum }}</span>
     </div>
-    <pre class="code-pre"><code
-      [highlight]="vulnCase.sourceCode"
-      [language]="highlightLang"
-      #codeEl></code></pre>
+    <pre class="code-pre"><code [innerHTML]="highlightedHtml"></code></pre>
   </div>
 </div>

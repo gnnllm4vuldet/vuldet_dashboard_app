@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
@@ -10,7 +10,9 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   styleUrls: ['./topbar.component.scss']
 })
 export class TopbarComponent {
-  langs = ['en', 'de', 'hu'];
+  @Output() homeClick = new EventEmitter<void>();
+  
+  langs = ['en', 'de', 'hu', 'it'];
   currentLang = 'en';
 
   constructor(private translate: TranslateService) {}
@@ -18,5 +20,9 @@ export class TopbarComponent {
   setLang(lang: string): void {
     this.currentLang = lang;
     this.translate.use(lang);
+  }
+
+  onHomeClick(): void {
+    this.homeClick.emit();
   }
 }

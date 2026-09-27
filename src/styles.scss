@@ -3,38 +3,75 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --gnn: #1e3db8;
-  --gnn-l: #eef0ff;
-  --gnn-m: #b8c4f8;
-  --claude: #7c22b0;
-  --claude-l: #f5eeff;
-  --claude-m: #d0a0f0;
-  --gpt: #0a6e42;
-  --gpt-l: #e8faf2;
-  --gpt-m: #80d8b0;
-  --llama: #b84a0a;
-  --llama-l: #fff2e8;
-  --llama-m: #f0b080;
-  --danger: #c0392b;
-  --safe: #1a7a40;
-  --bg: #f4f2ee;
+  /* Model colors - vibrant and modern */
+  --gnn: #2563eb;
+  --gnn-l: #eff6ff;
+  --gnn-m: #93c5fd;
+  --claude: #9333ea;
+  --claude-l: #faf5ff;
+  --claude-m: #d8b4fe;
+  --gpt: #059669;
+  --gpt-l: #ecfdf5;
+  --gpt-m: #6ee7b7;
+  --llama: #ea580c;
+  --llama-l: #fff7ed;
+  --llama-m: #fdba74;
+  
+  /* Status colors */
+  --danger: #dc2626;
+  --danger-light: #fee2e2;
+  --safe: #16a34a;
+  --safe-light: #dcfce7;
+  
+  /* Neutral palette - clean and modern */
+  --bg: #fafaf9;
+  --bg-secondary: #f5f5f4;
   --card: #ffffff;
-  --border: #e4e0d8;
-  --border2: #ccc8be;
-  --text1: #1a1a1a;
-  --text2: #666660;
-  --text3: #aaa8a0;
+  --border: #e7e5e4;
+  --border-light: #f5f5f4;
+  --border-dark: #d6d3d1;
+  
+  /* Text colors */
+  --text1: #0c0a09;
+  --text2: #57534e;
+  --text3: #a8a29e;
+  --text-inverse: #ffffff;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  
+  /* Border radius */
   --radius: 12px;
   --radius-sm: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
 }
 
 html, body {
   height: 100%;
-  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  font-family: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
   background: var(--bg);
   color: var(--text1);
   font-size: 13px;
-  line-height: 1.5;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Better touch scrolling on iOS */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent text size adjustment on orientation change */
+@media (max-width: 768px) {
+  html {
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
 }
 
 /* Shared pill styles */
@@ -42,46 +79,139 @@ html, body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 2px 7px;
-  border-radius: 5px;
-  font-size: 9px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 10px;
   font-weight: 600;
   font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.01em;
 }
-.pill-1   { background: #fff0ee; color: #b83020; border: 1px solid #f0c0b0; }
-.pill-0   { background: #edf9f2; color: #127840; border: 1px solid #98d8b0; }
-.pill-gt1 { background: #fdeef5; color: #9a1050; border: 1px solid #f0a0c0; }
-.pill-gt0 { background: #eef2ff; color: #1a3ab0; border: 1px solid #a8b8f4; }
+.pill-1   { background: var(--danger-light); color: var(--danger); border: 1px solid #fecaca; }
+.pill-0   { background: var(--safe-light); color: var(--safe); border: 1px solid #bbf7d0; }
+.pill-gt1 { background: var(--danger-light); color: var(--danger); border: 1px solid #fecaca; }
+.pill-gt0 { background: var(--safe-light); color: var(--safe); border: 1px solid #bbf7d0; }
 
 /* Shared button */
 .btn-back {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 16px;
+  padding: 9px 18px;
   background: var(--text1);
-  color: #fff;
+  color: var(--text-inverse);
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 12px;
-  font-weight: 500;
+  font-size: 13px;
+  font-weight: 600;
   cursor: pointer;
   font-family: inherit;
-  transition: background 0.12s;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-sm);
+  /* Touch-friendly tap target */
+  min-height: 44px;
 }
-.btn-back:hover { background: #333; }
+.btn-back:hover { 
+  background: #292524;
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+.btn-back:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+@media (max-width: 768px) {
+  .btn-back {
+    padding: 10px 16px;
+    font-size: 12px;
+  }
+}
 
 /* Section badge */
 .sec-badge {
-  padding: 5px 14px;
-  border-radius: 20px;
-  font-size: 11px;
-  font-weight: 500;
+  padding: 6px 16px;
+  border-radius: 24px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  box-shadow: var(--shadow-sm);
 }
 
 /* Animations */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(6px); }
+  from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-.fade-up { animation: fadeUp 0.2s ease both; }
+.fade-up { animation: fadeUp 0.4s cubic-bezier(0.4, 0, 0.2, 1) both; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.fade-in { animation: fadeIn 0.3s ease both; }
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.slide-in { animation: slideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) both; }
+
+/* Smooth scrolling */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-dark);
+  border-radius: 10px;
+  border: 2px solid var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text3);
+}
+
+/* Selection color */
+::selection {
+  background: var(--gnn-l);
+  color: var(--gnn);
+}
+
+/* Touch-friendly tap targets */
+@media (max-width: 768px) {
+  button, a, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Larger touch targets for interactive elements */
+  .pill, .sec-badge {
+    padding: 4px 10px;
+    font-size: 11px;
+  }
+}
+
+/* Prevent zoom on input focus (iOS) */
+@media (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Better mobile scrolling */
+@media (max-width: 768px) {
+  * {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+  }
+}

@@ -24,8 +24,8 @@ export class ModelVerdictsComponent implements OnChanges {
 
   private readonly modelColors: Record<string, string> = {
     GNN:      'var(--gnn)',
-    'GPT-4o': 'var(--gpt)',
-    Claude:   'var(--claude)',
+    LLM:      'var(--gpt)',
+    CodeBERT: 'var(--claude)',
   };
 
   ngOnChanges(): void {
@@ -40,9 +40,9 @@ export class ModelVerdictsComponent implements OnChanges {
       return c.groundTruth === 'vulnerable' ? 'secure' : 'vulnerable';
     };
     this.verdicts = [
-      { name: 'GNN',    prediction: inferPrediction(c.gnn),    color: this.modelColors['GNN'],    isCorrect: c.gnn    === 'correct' },
-      { name: 'GPT-4o', prediction: inferPrediction(c.gpt),    color: this.modelColors['GPT-4o'], isCorrect: c.gpt    === 'correct' },
-      { name: 'Claude', prediction: inferPrediction(c.claude), color: this.modelColors['Claude'], isCorrect: c.claude === 'correct' },
+      { name: 'GNN',      prediction: inferPrediction(c.GNN),      color: this.modelColors['GNN'],      isCorrect: c.GNN      === 'correct' },
+      { name: 'LLM',      prediction: inferPrediction(c.LLM),      color: this.modelColors['LLM'],      isCorrect: c.LLM      === 'correct' },
+      { name: 'CodeBERT', prediction: inferPrediction(c.CodeBERT), color: this.modelColors['CodeBERT'], isCorrect: c.CodeBERT === 'correct' },
     ];
   }
 

@@ -1,10 +1,11 @@
 {
   "TOPBAR": {
-    "TITLE": "Vulnerability Detection · Model Comparison"
+    "TITLE": "Vulnerability Detection · Model Comparison",
+    "HOME": "Home"
   },
   "HEADER": {
     "TITLE": "Vulnerability Detection",
-    "SUBTITLE": "600 samples · GNN + 2 LLMs · 2026",
+    "SUBTITLE": "600 samples · GNN + 2 LLMs · 2024",
     "GRANT_LABEL": "supported by",
     "COLLABORATION": "A collaboration between"
   },
@@ -13,45 +14,44 @@
     "HINT": "hover · click to explore",
     "INTERSECTIONS": "Intersections",
     "EXCLUSIVE": "exclusive",
-    "ALL_CORRECT": "all 3 correct",
-    "ALL_WRONG": "all 3 wrong",
-    "ALL_CORRECT_LABEL": "All three correct",
+    "ALL_CORRECT": "All correct",
+    "ALL_WRONG": "All wrong",
+    "ALL_CORRECT_LABEL": "All correct",
     "ALL_WRONG_LABEL": "All wrong",
     "BOTH_CORRECT_LABEL": "Both correct",
     "BOTH_WRONG_LABEL": "Both wrong",
-    "BOTH_WRONG": "both wrong"
+    "BOTH_WRONG": "Both wrong"
+  },
+  "CHARTS": {
+    "TITLE": "Dataset characteristics"
   },
   "CASES_SWITCHER": {
-    "LABEL": "Show manual cases",
-    "NORMAL_HINT": "600 test cases · GNN + Claude + GPT-4o",
-    "MANUAL_HINT": "129 test cases · GNN + Claude"
+    "LABEL": "Show evaluated entries only",
+    "NORMAL_HINT": "600 samples · GNN + LLM + CodeBERT",
+    "MANUAL_HINT": "300 samples · GNN + LLM + CodeBERT"
   },
   "SECTION": {
     "BACK": "Back",
     "SWITCH_LABEL": "Switch intersection",
     "LABELS": {
-      "gnn-only":    "GNN only — 44 cases",
-      "claude-only": "Claude only — 19 cases",
-      "gpt-only":    "GPT-4o only — 18 cases",
-      "gnn-claude":  "GNN ∩ Claude — 40 cases",
-      "claude-gpt":  "Claude ∩ GPT-4o — 118 cases",
-      "gnn-gpt":     "GNN ∩ GPT-4o — 36 cases",
-      "all-three-correct": "All three correct — 308",
-      "all-three-wrong":   "All three wrong — 17",
-      "both-correct":      "Both correct (manual)",
-      "both-wrong":        "Both wrong (manual)"
+      "gnn-only":      "GNN only — 24 cases",
+      "llm-only":      "LLM only — 63 cases",
+      "codebert-only": "CodeBERT only — 17 cases",
+      "gnn-llm":       "GNN ∩ LLM — 85 cases",
+      "gnn-codebert":  "GNN ∩ CodeBERT — 56 cases",
+      "llm-codebert":  "LLM ∩ CodeBERT — 74 cases",
+      "all-three-correct": "All correct (263)",
+      "all-three-wrong":   "All wrong (18)"
     },
     "DESCRIPTIONS": {
-      "gnn-only":    "Only GNN detected these vulnerabilities",
-      "claude-only": "Only Claude detected these vulnerabilities",
-      "gpt-only":    "Only GPT-4o detected these vulnerabilities",
-      "gnn-claude":  "GNN and Claude agreed, GPT-4o missed",
-      "claude-gpt":  "Claude and GPT-4o agreed, GNN missed",
-      "gnn-gpt":     "GNN and GPT-4o agreed, Claude missed",
-      "all-three-correct": "All three models correct — perfect consensus",
-      "all-three-wrong":   "All three models were wrong",
-      "both-correct":      "GNN and Claude both correct",
-      "both-wrong":        "GNN and Claude both wrong"
+      "gnn-only":      "Only GNN detected these vulnerabilities",
+      "llm-only":      "Only LLM detected these vulnerabilities",
+      "codebert-only": "Only CodeBERT detected these vulnerabilities",
+      "gnn-llm":       "GNN and LLM agreed, CodeBERT missed",
+      "gnn-codebert":  "GNN and CodeBERT agreed, LLM missed",
+      "llm-codebert":  "LLM and CodeBERT agreed, GNN missed",
+      "all-three-correct": "All correct — perfect consensus",
+      "all-three-wrong":   "All three models were wrong"
     }
   },
   "FILTER": {

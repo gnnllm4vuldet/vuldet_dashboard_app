@@ -1,11 +1,20 @@
-<app-topbar></app-topbar>
+<app-topbar (homeClick)="onBack()"></app-topbar>
 
 <div class="page">
-  <!-- HEADER: title -->
-  <div class="hdr">
-    <div class="title-c">
-      <div class="title-main">{{ 'HEADER.TITLE' | translate }}</div>
-      <div class="title-sub">{{ 'HEADER.SUBTITLE' | translate }}</div>
+  <!-- HEADER: logos only -->
+  <div class="hdr" [class.compact]="activeSection">
+    <div class="hdr-logos">
+      <a href="https://frontendart.com/en/" target="_blank" rel="noopener noreferrer">
+        <img src="assets/logos/fea.jpg" alt="FEA Logo" class="logo-company">
+      </a>
+      <a href="https://www.sec4ai4sec-project.eu/" target="_blank" rel="noopener noreferrer">
+        <img src="assets/logos/sec4AI4sec.png" alt="Sec4AI4Sec Logo" class="logo-project">
+      </a>
+      
+      <a href="https://www.unitn.it/en#main-content" target="_blank" rel="noopener noreferrer">
+        <img src="assets/logos/trento.png" alt="University of Trento Logo" class="logo-company">
+      </a>
+      
     </div>
   </div>
 
@@ -15,10 +24,18 @@
     (sectionSelected)="onSectionSelected($event)">
   </app-venn-diagram>
 
+  <!-- DATASET STATS (home page only) -->
+  <app-chart-stats *ngIf="!activeSection"></app-chart-stats>
+
   <!-- SECTION VIEW (replaces venn) -->
   <app-section-view
     *ngIf="activeSection"
     [section]="activeSection"
     (back)="onBack()">
   </app-section-view>
+</div>
+
+<!-- EU Funding Logo - Fixed Bottom Right -->
+<div class="eu-funding-logo">
+  <img src="assets/logos/eu.png" alt="EU Funding Logo">
 </div>

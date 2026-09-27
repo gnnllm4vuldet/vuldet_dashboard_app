@@ -12,7 +12,7 @@
         {{ v.prediction === 'vulnerable' ? ('CODE_DETAIL.VULNERABLE' | translate) : ('CODE_DETAIL.SECURE' | translate) }}
       </span>
       <span class="atag" [class.aok]="v.isCorrect" [class.abad]="!v.isCorrect">
-        {{ v.isCorrect ? '✓ ' + ('CODE_DETAIL.CORRECT' | translate) : '✗ ' + ('CODE_DETAIL.WRONG' | translate) }}
+        {{ v.isCorrect ? ('CODE_DETAIL.CORRECT' | translate) : ('CODE_DETAIL.WRONG' | translate) }}
       </span>
     </span>
   </div>

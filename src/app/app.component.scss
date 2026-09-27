@@ -1,12 +1,150 @@
 .page {
-  padding: 24px 32px 40px;
+  padding: 24px 40px 100px;
+  max-width: 1600px;
+  margin: 0 auto;
 
-  .hdr {
-    text-align: center;
-    margin-bottom: 28px;
+  @media (max-width: 768px) {
+    padding: 16px 16px 80px;
   }
 
-  .title-c { text-align: center; }
-  .title-main { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; }
-  .title-sub  { font-size: 11px; color: var(--text3); margin-top: 3px; }
+  .hdr {
+    margin-bottom: 32px;
+    padding: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.compact {
+      margin-bottom: 16px;
+      padding: 0;
+
+      .hdr-logos {
+        gap: 16px;
+        max-height: 50px;
+      }
+
+      .logo-project {
+        width: 36px;
+        height: 36px;
+        box-shadow: 
+          0 1px 2px rgba(0, 0, 0, 0.04),
+          0 4px 16px rgba(0, 0, 0, 0.06);
+      }
+
+      .logo-company {
+        height: 24px;
+        padding: 4px 8px;
+        max-height: 36px;
+        box-shadow: 
+          0 1px 2px rgba(0, 0, 0, 0.03),
+          0 2px 8px rgba(0, 0, 0, 0.04);
+      }
+    }
+
+    @media (max-width: 768px) {
+      margin-bottom: 16px;
+
+      &.compact {
+        display: none;
+      }
+    }
+  }
+
+  .hdr-logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 56px;
+    transition: gap 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    @media (max-width: 768px) {
+      gap: 16px;
+      flex-direction: column;
+    }
+  }
+
+  .logo-project {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--card);
+    background: var(--card);
+    box-shadow: var(--shadow-lg);
+    flex-shrink: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    &:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: var(--shadow-xl);
+      border-color: var(--border);
+    }
+
+    @media (max-width: 768px) {
+      width: 80px;
+      height: 80px;
+      border-width: 2px;
+    }
+  }
+
+  .logo-company {
+    height: 56px;
+    width: auto;
+    max-width: 200px;
+    object-fit: contain;
+    background: var(--card);
+    padding: 12px 20px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    flex-shrink: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--border-dark);
+    }
+
+    @media (max-width: 768px) {
+      height: 32px;
+      max-width: 120px;
+      padding: 6px 10px;
+    }
+  }
+}
+
+/* EU Funding Logo - Fixed Bottom Right */
+.eu-funding-logo {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+  background: var(--card);
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--border-dark);
+  }
+
+  img {
+    display: block;
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  @media (max-width: 768px) {
+    bottom: 12px;
+    right: 12px;
+    padding: 8px 10px;
+
+    img {
+      height: 32px;
+    }
+  }
 }
