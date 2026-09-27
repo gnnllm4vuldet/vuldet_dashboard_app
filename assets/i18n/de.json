@@ -1,10 +1,11 @@
 {
   "TOPBAR": {
-    "TITLE": "Schwachstellenerkennung · Modellvergleich"
+    "TITLE": "Schwachstellenerkennung · Modellvergleich",
+    "HOME": "Startseite"
   },
   "HEADER": {
     "TITLE": "Schwachstellenerkennung",
-    "SUBTITLE": "600 Proben · GNN + 2 LLMs · 2026",
+    "SUBTITLE": "600 Proben · GNN + 2 LLMs · 2024",
     "GRANT_LABEL": "gefördert von",
     "COLLABORATION": "Eine Zusammenarbeit von"
   },
@@ -13,45 +14,44 @@
     "HINT": "Hover · Klick für Details",
     "INTERSECTIONS": "Schnittmengen",
     "EXCLUSIVE": "exklusiv",
-    "ALL_CORRECT": "alle 3 korrekt",
-    "ALL_WRONG": "alle 3 falsch",
-    "ALL_CORRECT_LABEL": "Alle drei korrekt",
+    "ALL_CORRECT": "alle korrekt",
+    "ALL_WRONG": "Alle falsch",
+    "ALL_CORRECT_LABEL": "Alle korrekt",
     "ALL_WRONG_LABEL": "Alle falsch",
     "BOTH_CORRECT_LABEL": "Beide korrekt",
     "BOTH_WRONG_LABEL": "Beide falsch",
     "BOTH_WRONG": "beide falsch"
   },
+  "CHARTS": {
+    "TITLE": "Datensatzmerkmale"
+  },
   "CASES_SWITCHER": {
-    "LABEL": "Manuelle Fälle anzeigen",
-    "NORMAL_HINT": "600 Testfälle · GNN + Claude + GPT-4o",
-    "MANUAL_HINT": "129 Testfälle · GNN + Claude"
+    "LABEL": "Nur bewertete Einträge anzeigen",
+    "NORMAL_HINT": "600 Proben · GNN + LLM + CodeBERT",
+    "MANUAL_HINT": "300 Proben · GNN + LLM + CodeBERT"
   },
   "SECTION": {
     "BACK": "Zurück",
     "SWITCH_LABEL": "Schnittmenge wechseln",
     "LABELS": {
-      "gnn-only":    "Nur GNN — 44 Fälle",
-      "claude-only": "Nur Claude — 19 Fälle",
-      "gpt-only":    "Nur GPT-4o — 18 Fälle",
-      "gnn-claude":  "GNN ∩ Claude — 40 Fälle",
-      "claude-gpt":  "Claude ∩ GPT-4o — 118 Fälle",
-      "gnn-gpt":     "GNN ∩ GPT-4o — 36 Fälle",
-      "all-three-correct": "Alle drei korrekt — 308",
-      "all-three-wrong":   "Alle drei falsch — 17",
-      "both-correct":      "Beide korrekt (manuell)",
-      "both-wrong":        "Beide falsch (manuell)"
+      "gnn-only":      "Nur GNN — 24 Fälle",
+      "llm-only":      "Nur LLM — 63 Fälle",
+      "codebert-only": "Nur CodeBERT — 17 Fälle",
+      "gnn-llm":       "GNN ∩ LLM — 85 Fälle",
+      "gnn-codebert":  "GNN ∩ CodeBERT — 56 Fälle",
+      "llm-codebert":  "LLM ∩ CodeBERT — 74 Fälle",
+      "all-three-correct": "Alle korrekt (263)",
+      "all-three-wrong":   "Alle falsch (18)"
     },
     "DESCRIPTIONS": {
-      "gnn-only":    "Nur GNN erkannte diese Schwachstellen",
-      "claude-only": "Nur Claude erkannte diese Schwachstellen",
-      "gpt-only":    "Nur GPT-4o erkannte diese Schwachstellen",
-      "gnn-claude":  "GNN und Claude einig, GPT-4o nicht",
-      "claude-gpt":  "Claude und GPT-4o einig, GNN nicht",
-      "gnn-gpt":     "GNN und GPT-4o einig, Claude nicht",
+      "gnn-only":      "Nur GNN erkannte diese Schwachstellen",
+      "llm-only":      "Nur LLM erkannte diese Schwachstellen",
+      "codebert-only": "Nur CodeBERT erkannte diese Schwachstellen",
+      "gnn-llm":       "GNN und LLM einig, CodeBERT nicht",
+      "gnn-codebert":  "GNN und CodeBERT einig, LLM nicht",
+      "llm-codebert":  "LLM und CodeBERT einig, GNN nicht",
       "all-three-correct": "Alle drei Modelle korrekt — perfekter Konsens",
-      "all-three-wrong":   "Alle drei Modelle lagen falsch",
-      "both-correct":      "GNN und Claude beide korrekt",
-      "both-wrong":        "GNN und Claude beide falsch"
+      "all-three-wrong":   "Alle drei Modelle lagen falsch"
     }
   },
   "FILTER": {

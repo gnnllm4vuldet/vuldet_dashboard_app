@@ -11,7 +11,7 @@
             "MCC": 0.4536953707
         },
         {
-            "method": "Claude",
+            "method": "LLM",
             "FPR": 0.1866666667,
             "FNR": 0.1966666667,
             "recall": 0.8033333333,
@@ -21,17 +21,17 @@
             "MCC": 0.6166975023
         },
         {
-            "method": "GPT-4o",
-            "FPR": 0.1766666667,
-            "FNR": 0.2233333333,
-            "recall": 0.7766666667,
-            "precision": 0.8146853147,
-            "F1-score": 0.795221843,
-            "accuracy": 0.8,
-            "MCC": 0.6006544024
+            "method": "CodeBERT",
+            "FPR": 0.1333333333,
+            "FNR": 0.5,
+            "recall": 0.5,
+            "precision": 0.7894736842,
+            "F1-score": 0.612244898,
+            "accuracy": 0.6833333333,
+            "MCC": 0.3941159001
         },
         {
-            "method": "GNN-and-Claude",
+            "method": "GNN AND LLM",
             "FPR": 0.02666666667,
             "FNR": 0.5633333333,
             "recall": 0.4366666667,
@@ -41,7 +41,7 @@
             "MCC": 0.4859003911
         },
         {
-            "method": "GNN-or-Claude",
+            "method": "GNN OR LLM",
             "FPR": 0.2766666667,
             "FNR": 0.09,
             "recall": 0.91,
@@ -51,24 +51,64 @@
             "MCC": 0.6446644011
         },
         {
-            "method": "GNN-and-GPT-4o",
-            "FPR": 0.006666666667,
-            "FNR": 0.5666666667,
-            "recall": 0.4333,
-            "precision": 0.9848484848,
-            "F1-score": 0.6018518519,
-            "accuracy": 0.7133333333,
-            "MCC": 0.5149915196
+            "method": "GNN AND CodeBERT",
+            "FPR": 0.02333333333,
+            "FNR": 0.71,
+            "recall": 0.29,
+            "precision": 0.9255319149,
+            "F1-score": 0.4416243655,
+            "accuracy": 0.6333333333,
+            "MCC": 0.3668181378
         },
         {
-            "method": "GNN-or-GPT-4o",
-            "FPR": 0.2866666667,
-            "FNR": 0.1133333333,
-            "recall": 0.8866666667,
-            "precision": 0.7556818182,
-            "F1-score": 0.8159509202,
-            "accuracy": 0.8,
-            "MCC": 0.6092216562
+            "method": "GNN OR CodeBERT",
+            "FPR": 0.2266666667,
+            "FNR": 0.2466666667,
+            "recall": 0.7533333333,
+            "precision": 0.768707483,
+            "F1-score": 0.7609427609,
+            "accuracy": 0.7633333333,
+            "MCC": 0.5267720316
+        },
+        {
+            "method": "LLM AND CodeBERT",
+            "FPR": 0.04333333333,
+            "FNR": 0.6,
+            "recall": 0.4,
+            "precision": 0.9022556391,
+            "F1-score": 0.5542725173,
+            "accuracy": 0.6783333333,
+            "MCC": 0.4293381859
+        },
+        {
+            "method": "LLM OR CodeBERT",
+            "FPR": 0.2766666667,
+            "FNR": 0.09666666667,
+            "recall": 0.9033333333,
+            "precision": 0.7655367232,
+            "F1-score": 0.8287461774,
+            "accuracy": 0.8133333333,
+            "MCC": 0.6370722155
+        },
+        {
+            "method": "All three AND",
+            "FPR": 0.01,
+            "FNR": 0.77,
+            "recall": 0.23,
+            "precision": 0.9583333333,
+            "F1-score": 0.3709677419,
+            "accuracy": 0.61,
+            "MCC": 0.3385016002
+        },
+        {
+            "method": "All three OR",
+            "FPR": 0.3533333333,
+            "FNR": 0.05,
+            "recall": 0.95,
+            "precision": 0.7289002558,
+            "F1-score": 0.8248914616,
+            "accuracy": 0.7983333333,
+            "MCC": 0.6261689224
         }
     ],
     "dataset": {
@@ -84,54 +124,70 @@
     },
     "vennSections": [
         {
-            "id": "gnn-only",
-            "count": 44
-        },
-        {
-            "id": "claude-only",
-            "count": 19
-        },
-        {
-            "id": "gpt-only",
+            "id": "all-three-wrong",
             "count": 18
         },
         {
-            "id": "gnn-claude",
-            "count": 40
-        },
-        {
-            "id": "gnn-gpt",
-            "count": 36
-        },
-        {
-            "id": "claude-gpt",
-            "count": 118
-        },
-        {
             "id": "all-three-correct",
-            "count": 308
+            "count": 263
         },
         {
-            "id": "all-three-wrong",
+            "id": "gnn-only",
+            "count": 24
+        },
+        {
+            "id": "llm-only",
+            "count": 63
+        },
+        {
+            "id": "codebert-only",
             "count": 17
+        },
+        {
+            "id": "gnn-llm",
+            "count": 85
+        },
+        {
+            "id": "gnn-codebert",
+            "count": 56
+        },
+        {
+            "id": "llm-codebert",
+            "count": 74
         }
     ],
     "vennSectionsManual": [
         {
+            "id": "all-three-wrong",
+            "count": 15
+        },
+        {
+            "id": "all-three-correct",
+            "count": 69
+        },
+        {
             "id": "gnn-only",
-            "count": 32
+            "count": 14
         },
         {
-            "id": "claude-only",
-            "count": 35
+            "id": "llm-only",
+            "count": 59
         },
         {
-            "id": "both-correct",
-            "count": 35
+            "id": "codebert-only",
+            "count": 12
         },
         {
-            "id": "both-wrong",
-            "count": 27
+            "id": "gnn-llm",
+            "count": 62
+        },
+        {
+            "id": "gnn-codebert",
+            "count": 18
+        },
+        {
+            "id": "llm-codebert",
+            "count": 51
         }
     ]
 }

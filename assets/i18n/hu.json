@@ -1,10 +1,11 @@
 {
   "TOPBAR": {
-    "TITLE": "Sérülékenység-detektálás · Modellösszehasonlítás"
+    "TITLE": "Sérülékenység-detektálás · Modellösszehasonlítás",
+    "HOME": "Kezdőlap"
   },
   "HEADER": {
     "TITLE": "Sérülékenység-detektálás",
-    "SUBTITLE": "600 minta · GNN + 2 LLM · 2026",
+    "SUBTITLE": "600 minta · GNN + 2 LLM · 2024",
     "GRANT_LABEL": "támogatja",
     "COLLABORATION": "Együttműködés:"
   },
@@ -13,45 +14,44 @@
     "HINT": "hover · kattintás a részletekért",
     "INTERSECTIONS": "Metszetek",
     "EXCLUSIVE": "kizárólagos",
-    "ALL_CORRECT": "mind 3 helyes",
-    "ALL_WRONG": "mind 3 tévedett",
-    "ALL_CORRECT_LABEL": "Mind a három helyes",
+    "ALL_CORRECT": "mind helyes",
+    "ALL_WRONG": "Mind tévedett",
+    "ALL_CORRECT_LABEL": "Mind helyes",
     "ALL_WRONG_LABEL": "Mind tévedett",
     "BOTH_CORRECT_LABEL": "Mindkettő helyes",
     "BOTH_WRONG_LABEL": "Mindkettő tévedett",
     "BOTH_WRONG": "mindkettő tévedett"
   },
+  "CHARTS": {
+    "TITLE": "Adathalmaz jellemzők"
+  },
   "CASES_SWITCHER": {
-    "LABEL": "Manuális esetek megjelenítése",
-    "NORMAL_HINT": "600 teszteset · GNN + Claude + GPT-4o",
-    "MANUAL_HINT": "129 teszteset · GNN + Claude"
+    "LABEL": "Csak értékelt bejegyzések megjelenítése",
+    "NORMAL_HINT": "600 minta · GNN + LLM + CodeBERT",
+    "MANUAL_HINT": "300 minta · GNN + LLM + CodeBERT"
   },
   "SECTION": {
     "BACK": "Vissza",
     "SWITCH_LABEL": "Metszet váltása",
     "LABELS": {
-      "gnn-only":    "Csak GNN — 44 eset",
-      "claude-only": "Csak Claude — 19 eset",
-      "gpt-only":    "Csak GPT-4o — 18 eset",
-      "gnn-claude":  "GNN ∩ Claude — 40 eset",
-      "claude-gpt":  "Claude ∩ GPT-4o — 118 eset",
-      "gnn-gpt":     "GNN ∩ GPT-4o — 36 eset",
-      "all-three-correct": "Mind a három helyes — 308",
-      "all-three-wrong":   "Mind a három tévedett — 17",
-      "both-correct":      "Mindkettő helyes (manuális)",
-      "both-wrong":        "Mindkettő tévedett (manuális)"
+      "gnn-only":      "Csak GNN — 24 eset",
+      "llm-only":      "Csak LLM — 63 eset",
+      "codebert-only": "Csak CodeBERT — 17 eset",
+      "gnn-llm":       "GNN ∩ LLM — 85 eset",
+      "gnn-codebert":  "GNN ∩ CodeBERT — 56 eset",
+      "llm-codebert":  "LLM ∩ CodeBERT — 74 eset",
+      "all-three-correct": "Mind helyes — 263",
+      "all-three-wrong":   "Mind tévedett — 18"
     },
     "DESCRIPTIONS": {
-      "gnn-only":    "Csak a GNN találta meg — az összes LLM kihagyta",
-      "claude-only": "Csak Claude találta meg",
-      "gpt-only":    "Csak GPT-4o találta meg",
-      "gnn-claude":  "GNN és Claude egyezett, GPT-4o kihagyta",
-      "claude-gpt":  "Claude és GPT-4o egyezett, a GNN kihagyta",
-      "gnn-gpt":     "GNN és GPT-4o egyezett, Claude kihagyta",
+      "gnn-only":      "Csak a GNN találta meg",
+      "llm-only":      "Csak az LLM találta meg",
+      "codebert-only": "Csak a CodeBERT találta meg",
+      "gnn-llm":       "GNN és LLM egyezett, CodeBERT kihagyta",
+      "gnn-codebert":  "GNN és CodeBERT egyezett, LLM kihagyta",
+      "llm-codebert":  "LLM és CodeBERT egyezett, a GNN kihagyta",
       "all-three-correct": "Mind a három modell helyes — tökéletes konszenzus",
-      "all-three-wrong":   "Mind a három modell tévedett",
-      "both-correct":      "GNN és Claude mindkettő helyes",
-      "both-wrong":        "GNN és Claude mindkettő tévedett"
+      "all-three-wrong":   "Mind a három modell tévedett"
     }
   },
   "FILTER": {
